@@ -7,7 +7,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&amp;family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <style>
@@ -56,7 +56,6 @@
             letter-spacing: 0.12em;
             color: #8a7a6a;
             margin-bottom: 0.25rem;
-            display: block;
         }
         .btn {
             display: inline-block;
@@ -71,21 +70,12 @@
         }
         .btn-primary {
             background: #1f3b2c;
-            color: #faf8f5;
+            color: #ffffff;
         }
         .btn-primary:hover {
             background: #2a4f3a;
             transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(31, 59, 44, 0.20);
-        }
-        .btn-outline {
-            background: transparent;
-            color: #1f3b2c;
-            border: 2px solid #1f3b2c;
-        }
-        .btn-outline:hover {
-            background: #1f3b2c;
-            color: #faf8f5;
         }
         .btn-whatsapp {
             background: #25D366;
@@ -95,6 +85,10 @@
             background: #1da851;
             transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(37, 211, 102, 0.30);
+        }
+        /* Fix for nav Enquire button - ensure white text */
+        .nav-links .btn-primary {
+            color: #ffffff !important;
         }
         header {
             padding: 20px 0;
@@ -189,7 +183,7 @@
             margin-top: 2.5rem;
             border-radius: 24px;
             width: 100%;
-            max-height: 500px;
+            max-height: 600px;
             object-fit: cover;
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
         }
@@ -199,12 +193,24 @@
             gap: 36px;
             margin-top: 2rem;
         }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 36px;
+            margin-top: 2rem;
+        }
         .feature-card {
             background: #f6f4f0;
             padding: 28px 24px;
             border-radius: 20px;
-            transition: transform 0.2s;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.6s forwards;
         }
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
         .feature-card:hover {
             transform: translateY(-4px);
         }
@@ -261,10 +267,10 @@
             height: 260px;
             object-fit: cover;
             box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
-            transition: transform 0.2s;
+            transition: transform 0.3s ease;
         }
         .image-grid-2 img:hover {
-            transform: scale(1.01);
+            transform: scale(1.02);
         }
         .circle-image {
             border-radius: 999px;
@@ -348,6 +354,15 @@
             background: #3a5f4a;
             color: #d4e0d4;
         }
+
+        /* Animations */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         @media (max-width: 700px) {
             .nav-inner {
                 flex-direction: column;
@@ -384,9 +399,10 @@
             <div class="nav-links">
                 <a href="#paddock">The Paddock</a>
                 <a href="#teams">For Teams</a>
+                <a href="#wellbeing">Wellbeing</a>
                 <a href="#addons">Add-Ons</a>
                 <a href="#about">About</a>
-                <a href="#contact" class="btn btn-primary" style="padding:10px 24px; font-size:0.85rem;">Enquire</a>
+                <a href="#contact" class="btn btn-primary" style="padding:10px 24px; font-size:0.85rem; color:#ffffff !important;">Enquire</a>
             </div>
         </div>
     </header>
@@ -404,7 +420,7 @@
                 <span><i class="fas fa-users"></i> Sleeps 20–40+</span>
                 <span><i class="fas fa-hot-tub"></i> Wood-fired hot tub</span>
                 <span><i class="fas fa-dog"></i> Acer the Labrador</span>
-                <span><i class="fas fa-heart"></i> NHS discount available</span>
+                <span><i class="fas fa-heart"></i> Book a Wellbeing Experience</span>
             </div>
             <div class="hero-actions">
                 <a href="#contact" class="btn btn-primary">Enquire About Your Stay</a>
@@ -413,7 +429,7 @@
                 </a>
             </div>
             <!-- HERO PHOTO: name your file "hero.jpg" (night tent shot) -->
-            <img src="hero.jpg" alt="Boat Lane Paddock at night" class="hero-image" />
+            <img src="./hero.jpg" alt="Boat Lane Paddock at night" class="hero-image" />
         </div>
     </section>
 
@@ -424,12 +440,15 @@
             <h2>The paddock. Yours. Exclusively.</h2>
 
             <div class="price-badge">
-                £150 <span>per night — whole site hire</span>
+                £99 <span>per bell tent per night</span>
             </div>
             <p style="max-width:680px; font-size:1.1rem; color:#4a4a47; margin-top:0.25rem;">
                 Includes <strong>2 luxury family bell tents</strong> kitted out with all you'll need, a
                 <strong>wood-fired hot tub</strong>, hot shower and toilet facilities.
                 Canadian canoe, push bikes, space to play and beautiful sunsets!
+            </p>
+            <p style="max-width:680px; font-size:1rem; color:#6a6a67; margin-top:0.5rem;">
+                <strong>For whole site bookings:</strong> Enquire for a tailored quote based on your group size, extra tents, and bookable experiences.
             </p>
 
             <div class="grid-2" style="margin-top:2.5rem;">
@@ -447,8 +466,8 @@
 
             <!-- IMAGE GRID: hot tub (paddock.jpg) + interior tent (interior.jpg) -->
             <div class="image-grid-2">
-                <img src="paddock.jpg" alt="Wood-fired hot tub under the stars" />
-                <img src="interior.jpg" alt="Luxury bell tent interior with cosy bedding" />
+                <img src="./paddock.jpg" alt="Wood-fired hot tub under the stars" />
+                <img src="./interior.jpg" alt="Luxury bell tent interior with cosy bedding" />
             </div>
         </div>
     </section>
@@ -459,14 +478,13 @@
             <span class="section-tag">✦ For teams, corporates &amp; groups</span>
             <h2>Gather a gang and come away.</h2>
             <p style="max-width:680px; font-size:1.1rem; color:#c4d0c4; margin-top:0.25rem;">
-                Perfect for NHS wellbeing days, engineering team decompression, creative agency brainstorms,
-                or just a big group of friends. The whole paddock is yours — total privacy.
+                The whole paddock is yours — complete privacy. Ideal for wellbeing days, team decompression, creative brainstorms, or just a big group of friends.
             </p>
-            <div class="grid-2" style="margin-top:2.5rem;">
+            <div class="grid-3" style="margin-top:2.5rem;">
                 <div class="feature-card">
-                    <i class="fas fa-pound-sign"></i>
-                    <h3>Incredible value</h3>
-                    <p>£150 for the <em>entire site</em>. Sleeps 20+ in the bell tents, with space for extra tents at a minimal fee. Unbeatable for group budgets.</p>
+                    <i class="fas fa-star"></i>
+                    <h3>Your Tailored Experience</h3>
+                    <p>Every booking is unique. We'll work with you to create a package that fits your group — from wellness sessions to team activities, catering, and more.</p>
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-lock"></i>
@@ -478,62 +496,75 @@
                     <h3>The 30‑minute rule</h3>
                     <p>Easy from Worcester, Stratford‑upon‑Avon, Cheltenham, and Redditch. Leave the office at 5pm, be around the fire by 5:45pm.</p>
                 </div>
-                <div class="feature-card">
-                    <i class="fas fa-heart"></i>
-                    <h3>We love the NHS</h3>
-                    <p>Ask us about our healthcare team discount – a small thank‑you for everything you do.</p>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== ADD-ONS &amp; LOCAL AREA ===== -->
-    <section id="addons" class="section-light">
+    <!-- ===== WELLBEING EXPERIENCES ===== -->
+    <section id="wellbeing" class="section-light">
+        <div class="container">
+            <span class="section-tag">✦ Recharge &amp; reconnect</span>
+            <h2>Group Wellbeing Experiences</h2>
+            <p style="max-width:680px; font-size:1.1rem; color:#4a4a47; margin-top:0.25rem;">
+                Enhance your stay with one of our curated wellbeing experiences. Perfect for team bonding, stress relief, or simply trying something new.
+            </p>
+            <div class="grid-3" style="margin-top:2.5rem;">
+                <div class="feature-card">
+                    <i class="fas fa-yoga" style="color:#1f3b2c;"></i>
+                    <h3>Yoga &amp; Meditation</h3>
+                    <p>Start the day with a guided morning flow overlooking the paddock, or wind down with an evening meditation session. All levels welcome.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-music" style="color:#1f3b2c;"></i>
+                    <h3>Soundfulness with Chris Hope</h3>
+                    <p>An immersive sonic journey using Tibetan bowls. Let the vibrations melt away stress in this deeply relaxing evening experience.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-leaf" style="color:#1f3b2c;"></i>
+                    <h3>Tea Ceremony</h3>
+                    <p>A grounding, slow-paced ritual to centre your team before a fireside debrief. A beautiful way to connect and reset.</p>
+                </div>
+            </div>
+            <p style="text-align:center; margin-top:2rem; color:#6a6a67; font-size:0.95rem;">
+                <em>Fees depend on group size — enquire for a custom quote. Can't decide? Ask us about a bespoke package combining multiple experiences.</em>
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== ADD-ONS & LOCAL AREA ===== -->
+    <section id="addons" class="section-dark">
         <div class="container">
             <span class="section-tag">✦ Make it unforgettable</span>
-            <h2>From sonic journeys to riverside pints.</h2>
-            <p style="max-width:680px; font-size:1.1rem; color:#4a4a47; margin-top:0.25rem;">
+            <h2>From riverside pints to Pétanque.</h2>
+            <p style="max-width:680px; font-size:1.1rem; color:#c4d0c4; margin-top:0.25rem;">
                 We don't do rigid packages. When you enquire, we'll ask about your group's vibe and build it with you.
             </p>
 
-            <!-- On-site wellness -->
-            <h3 style="margin-top:2.5rem; font-family:'Inter',sans-serif; font-weight:600; font-size:1.2rem;">
-                <i class="fas fa-spa" style="color:#1f3b2c; margin-right:8px;"></i> On‑site wellness (bookable via us)
-            </h3>
-            <div class="pill-list">
-                <span class="pill">🎵 Soundfulness with Chris Hope (Tibetan bowls) – an evening sonic journey</span>
-                <span class="pill">🍵 Tea ceremony &amp; meditation</span>
-                <span class="pill">🧘 Guided yoga (morning flows)</span>
-            </div>
-            <p style="font-size:0.95rem; color:#5a5a57; margin-top:0.5rem;">
-                <em>Fees depend on group size – just ask Jonno for a quote.</em>
-            </p>
-
             <!-- Eat, drink, stroll -->
-            <h3 style="margin-top:2rem; font-family:'Inter',sans-serif; font-weight:600; font-size:1.2rem;">
-                <i class="fas fa-utensils" style="color:#1f3b2c; margin-right:8px;"></i> Eat, drink &amp; stroll
+            <h3 style="margin-top:2.5rem; font-family:'Inter',sans-serif; font-weight:600; font-size:1.2rem; color:#c4d0c4;">
+                <i class="fas fa-utensils" style="color:#b8d0b8; margin-right:8px;"></i> Eat, drink &amp; stroll
             </h3>
             <div class="pill-list">
                 <span class="pill">🍺 Boat Lane Brewery <em>(a stone's throw – independent, with rotating street-food carts!)</em></span>
                 <span class="pill">🏡 Riverside pub <em>(5‑minute amble – great food)</em></span>
                 <span class="pill">🐟 The Fish by the Weir <em>(another lovely pub by the water)</em></span>
             </div>
-            <p style="font-size:0.95rem; color:#5a5a57; margin-top:0.5rem;">
+            <p style="font-size:0.95rem; color:#aabcaa; margin-top:0.5rem;">
                 <strong>Food cart tip:</strong> Let us know which cuisine your team fancies when booking, and we'll confirm what's firing up at the brewery that evening.
             </p>
 
             <!-- Riverside -->
-            <h3 style="margin-top:2rem; font-family:'Inter',sans-serif; font-weight:600; font-size:1.2rem;">
-                <i class="fas fa-water" style="color:#1f3b2c; margin-right:8px;"></i> Riverside walks &amp; water
+            <h3 style="margin-top:2rem; font-family:'Inter',sans-serif; font-weight:600; font-size:1.2rem; color:#c4d0c4;">
+                <i class="fas fa-water" style="color:#b8d0b8; margin-right:8px;"></i> Riverside walks &amp; water
             </h3>
-            <p style="font-size:0.95rem; color:#4a4a47; max-width:640px;">
+            <p style="font-size:0.95rem; color:#aabcaa; max-width:640px;">
                 Step straight onto stunning riverside footpaths. A public launch point is nearby for paddleboarding or boating
                 <em>(bring your own gear – we don't supply boards or boats, but we'll point you to the best spot)</em>.
             </p>
 
             <!-- Active -->
-            <h3 style="margin-top:2rem; font-family:'Inter',sans-serif; font-weight:600; font-size:1.2rem;">
-                <i class="fas fa-basketball-ball" style="color:#1f3b2c; margin-right:8px;"></i> Active &amp; competitive
+            <h3 style="margin-top:2rem; font-family:'Inter',sans-serif; font-weight:600; font-size:1.2rem; color:#c4d0c4;">
+                <i class="fas fa-basketball-ball" style="color:#b8d0b8; margin-right:8px;"></i> Active &amp; competitive
             </h3>
             <div class="pill-list">
                 <span class="pill">🏀 Basketball court</span>
@@ -541,13 +572,13 @@
                 <span class="pill">🎠 Play park for younger kids</span>
                 <span class="pill">🏅 Pétanque grounds</span>
             </div>
-            <p style="font-size:0.95rem; color:#5a5a57; margin-top:0.5rem;">
+            <p style="font-size:0.95rem; color:#aabcaa; margin-top:0.5rem;">
                 Nothing bonds a team quicker than a cut‑throat Pétanque tournament with a local ale in hand.
             </p>
 
             <!-- Essentials -->
-            <h3 style="margin-top:2rem; font-family:'Inter',sans-serif; font-weight:600; font-size:1.2rem;">
-                <i class="fas fa-shopping-bag" style="color:#1f3b2c; margin-right:8px;"></i> The essentials
+            <h3 style="margin-top:2rem; font-family:'Inter',sans-serif; font-weight:600; font-size:1.2rem; color:#c4d0c4;">
+                <i class="fas fa-shopping-bag" style="color:#b8d0b8; margin-right:8px;"></i> The essentials
             </h3>
             <div class="pill-list">
                 <span class="pill">🏪 Village shop <em>(5‑minute walk)</em></span>
@@ -557,51 +588,51 @@
     </section>
 
     <!-- ===== ABOUT / MEET THE FAMILY ===== -->
-    <section id="about" class="section-dark">
+    <section id="about" class="section-light">
         <div class="container" style="text-align:center;">
             <span class="section-tag">✦ Meet the family</span>
             <h2>We're Jonno &amp; the family.</h2>
-            <p style="max-width:640px; font-size:1.1rem; color:#c4d0c4; margin:0.25rem auto 0;">
+            <p style="max-width:640px; font-size:1.1rem; color:#4a4a47; margin:0.25rem auto 0;">
                 We started Boat Lane Paddock because we love seeing people reconnect around a fire.
                 We're not a faceless corporation – we're your neighbours in Worcestershire.
                 When you message us, you're messaging us directly.
             </p>
-            <div class="dog-note">
+            <div class="dog-note" style="background:#f0ede8; color:#8a7a6a;">
                 🐾 You're sure to make friends with our very friendly fox red Labrador, <strong>Acer</strong>
                 <span style="font-weight:400;">(who we can happily keep out of your way if you prefer!)</span>
             </div>
             <!-- FAMILY PHOTO: name your file "family.jpg" (family shot on the river) -->
-            <img src="family.jpg" alt="Jonno and family on the river" class="circle-image" />
+            <img src="./family.jpg" alt="Jonno and family on the river" class="circle-image" />
         </div>
     </section>
 
-    <!-- ===== CONTACT &amp; AVAILABILITY ===== -->
-    <section id="contact" class="section-light">
+    <!-- ===== CONTACT & AVAILABILITY ===== -->
+    <section id="contact" class="section-dark">
         <div class="container" style="max-width:680px;">
             <span class="section-tag">✦ Let's find your date</span>
             <h2>Enquire about exclusive hire</h2>
-            <p style="color:#4a4a47; margin-bottom:2rem;">
+            <p style="color:#c4d0c4; margin-bottom:2rem;">
                 We're carefully curating our 2026 group dates. To avoid double‑booking and guarantee total exclusivity,
                 drop us a message – we'll reply within a couple of hours.
             </p>
 
-            <form id="contactForm" action="#" method="POST">
+            <form id="contactForm" onsubmit="sendWhatsApp(event)">
                 <div class="form-row-2">
                     <div class="form-group">
-                        <label for="name">Your name *</label>
+                        <label for="name" style="color:#c4d0c4;">Your name *</label>
                         <input type="text" id="name" name="name" required />
                     </div>
                     <div class="form-group">
-                        <label for="company">Company / Organisation</label>
+                        <label for="company" style="color:#c4d0c4;">Company / Organisation</label>
                         <input type="text" id="company" name="company" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email address *</label>
+                    <label for="email" style="color:#c4d0c4;">Email address *</label>
                     <input type="email" id="email" name="email" required />
                 </div>
                 <div class="form-group">
-                    <label for="groupSize">Estimated group size *</label>
+                    <label for="groupSize" style="color:#c4d0c4;">Estimated group size *</label>
                     <select id="groupSize" name="groupSize" required>
                         <option value="">– Please select –</option>
                         <option value="Up to 10">Up to 10 guests</option>
@@ -612,24 +643,24 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="dates">Preferred dates (or rough window)</label>
+                    <label for="dates" style="color:#c4d0c4;">Preferred dates (or rough window)</label>
                     <input type="text" id="dates" name="dates" placeholder="e.g. July 2026, or 18–20 September" />
                 </div>
                 <div class="form-group">
-                    <label for="message">Anything else? (vibe, add‑ons, dietary needs…)</label>
+                    <label for="message" style="color:#c4d0c4;">Anything else? (vibe, add‑ons, dietary needs…)</label>
                     <textarea id="message" name="message" placeholder="Tell us what your gang is looking for – we'll build a quote around it."></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">
-                    Send Enquiry to Jonno
+                <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; color:#ffffff;">
+                    <i class="fab fa-whatsapp" style="margin-right:10px;"></i> Send Enquiry via WhatsApp
                 </button>
             </form>
 
-            <div style="text-align:center; margin-top:2rem; padding-top:2rem; border-top:1px solid #e0dcd6;">
-                <p style="font-weight:500; margin-bottom:0.75rem;">Prefer a quicker chat?</p>
+            <div style="text-align:center; margin-top:2rem; padding-top:2rem; border-top:1px solid #3a5f4a;">
+                <p style="font-weight:500; margin-bottom:0.75rem; color:#c4d0c4;">Prefer to message direct?</p>
                 <a href="https://wa.me/447530071958" class="btn btn-whatsapp" target="_blank" style="padding:14px 40px;">
                     <i class="fab fa-whatsapp"></i> Message Jonno on WhatsApp
                 </a>
-                <p style="font-size:0.85rem; color:#6a6a67; margin-top:0.75rem;">
+                <p style="font-size:0.85rem; color:#aabcaa; margin-top:0.75rem;">
                     Or call Jonno direct: <strong>07530 071 958</strong> – we reply within 2 hours, usually much faster.
                 </p>
             </div>
@@ -652,11 +683,38 @@
     </footer>
 
     <script>
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('✅ Thanks! Jonno will get back to you within 2 hours. In the meantime, feel free to WhatsApp or call!');
-            this.reset();
-        });
+        function sendWhatsApp(event) {
+            event.preventDefault();
+
+            // Get form values
+            const name = document.getElementById('name').value;
+            const company = document.getElementById('company').value;
+            const email = document.getElementById('email').value;
+            const groupSize = document.getElementById('groupSize').value;
+            const dates = document.getElementById('dates').value;
+            const message = document.getElementById('message').value;
+
+            // Build the WhatsApp message
+            let whatsappMessage = '🆕 *New Enquiry from Boat Lane Paddock*%0A%0A';
+            whatsappMessage += `*Name:* ${name}%0A`;
+            if (company) whatsappMessage += `*Company:* ${company}%0A`;
+            whatsappMessage += `*Email:* ${email}%0A`;
+            whatsappMessage += `*Group Size:* ${groupSize}%0A`;
+            if (dates) whatsappMessage += `*Preferred Dates:* ${dates}%0A`;
+            if (message) whatsappMessage += `*Message:* ${message}%0A`;
+            whatsappMessage += '%0A📩 Reply to this enquiry directly from WhatsApp.';
+
+            // Open WhatsApp with the pre-filled message
+            const whatsappUrl = `https://wa.me/447530071958?text=${whatsappMessage}`;
+            window.open(whatsappUrl, '_blank');
+
+            // Show confirmation
+            alert('✅ Your enquiry has been prepared for WhatsApp. Click "Send" to message Jonno directly.');
+
+            // Reset the form
+            document.getElementById('contactForm').reset();
+        }
     </script>
+
 </body>
 </html>
