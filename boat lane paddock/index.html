@@ -86,7 +86,6 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(37, 211, 102, 0.30);
         }
-        /* Fix for nav Enquire button - ensure white text */
         .nav-links .btn-primary {
             color: #ffffff !important;
         }
@@ -186,6 +185,11 @@
             max-height: 600px;
             object-fit: cover;
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+        .hero-image:hover {
+            opacity: 0.95;
         }
         .grid-2 {
             display: grid;
@@ -267,10 +271,12 @@
             height: 260px;
             object-fit: cover;
             box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            cursor: pointer;
         }
         .image-grid-2 img:hover {
             transform: scale(1.02);
+            opacity: 0.95;
         }
         .circle-image {
             border-radius: 999px;
@@ -279,6 +285,11 @@
             margin: 1.5rem auto 0;
             display: block;
             box-shadow: 0 8px 28px rgba(0, 0, 0, 0.10);
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+        .circle-image:hover {
+            opacity: 0.95;
         }
         .price-badge {
             display: inline-block;
@@ -355,12 +366,90 @@
             color: #d4e0d4;
         }
 
-        /* Animations */
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* ===== LIGHTBOX OVERLAY ===== */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            backdrop-filter: blur(8px);
+        }
+        .lightbox-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        .lightbox-overlay img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            transform: scale(0.95);
+            transition: transform 0.4s ease;
+        }
+        .lightbox-overlay.active img {
+            transform: scale(1);
+        }
+        .lightbox-close {
+            position: fixed;
+            top: 24px;
+            right: 32px;
+            color: #fff;
+            font-size: 2.4rem;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            background: none;
+            border: none;
+            z-index: 1001;
+        }
+        .lightbox-close:hover {
+            transform: rotate(90deg);
+        }
+        .lightbox-counter {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.6);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 8px 20px;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+        }
+        .lightbox-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 2.8rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: all 0.2s ease;
+            padding: 20px 12px;
+            z-index: 1001;
+        }
+        .lightbox-nav:hover {
+            color: #fff;
+            transform: translateY(-50%) scale(1.1);
+        }
+        .lightbox-nav.prev {
+            left: 20px;
+        }
+        .lightbox-nav.next {
+            right: 20px;
         }
 
         @media (max-width: 700px) {
@@ -386,6 +475,28 @@
             }
             .image-grid-2 img {
                 height: 200px;
+            }
+            .lightbox-nav {
+                font-size: 2rem;
+                padding: 12px 8px;
+            }
+            .lightbox-nav.prev { left: 8px; }
+            .lightbox-nav.next { right: 8px; }
+            .lightbox-close {
+                top: 16px;
+                right: 20px;
+                font-size: 2rem;
+            }
+            .lightbox-overlay {
+                padding: 16px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
@@ -413,7 +524,7 @@
             <span class="section-tag">✦ Worcestershire countryside</span>
             <h1>Wake to birdsong at Boat Lane Paddock.</h1>
             <p class="subtitle" style="max-width:720px;">
-                Enjoy waking to the sound of birdsong, the gentle flap of canvas, or the sound of the zip before you snuggle into bed!
+                Enjoy waking to the sound of birdsong, the gentle flap of canvas, or the sound of the zip before you snuggle into bed! 
                 Why not gather a gang and come away to our family-friendly glamping paddock.
             </p>
             <div class="hero-badges">
@@ -428,7 +539,7 @@
                     <i class="fab fa-whatsapp"></i> Message Jonno
                 </a>
             </div>
-            <!-- HERO PHOTO: name your file "hero.jpg" (night tent shot) -->
+            <!-- HERO PHOTO -->
             <img src="./hero.jpg" alt="Boat Lane Paddock at night" class="hero-image" />
         </div>
     </section>
@@ -438,19 +549,19 @@
         <div class="container">
             <span class="section-tag">✦ The space</span>
             <h2>The paddock. Yours. Exclusively.</h2>
-
+            
             <div class="price-badge">
                 £99 <span>per bell tent per night</span>
             </div>
             <p style="max-width:680px; font-size:1.1rem; color:#4a4a47; margin-top:0.25rem;">
-                Includes <strong>2 luxury family bell tents</strong> kitted out with all you'll need, a
-                <strong>wood-fired hot tub</strong>, hot shower and toilet facilities.
+                Includes <strong>2 luxury family bell tents</strong> kitted out with all you'll need, a 
+                <strong>wood-fired hot tub</strong>, hot shower and toilet facilities. 
                 Canadian canoe, push bikes, space to play and beautiful sunsets!
             </p>
             <p style="max-width:680px; font-size:1rem; color:#6a6a67; margin-top:0.5rem;">
                 <strong>For whole site bookings:</strong> Enquire for a tailored quote based on your group size, extra tents, and bookable experiences.
             </p>
-
+            
             <div class="grid-2" style="margin-top:2.5rem;">
                 <div class="feature-card">
                     <i class="fas fa-tent"></i>
@@ -463,8 +574,8 @@
                     <p>Cooking facilities, BBQ and firepit are all ready to be enjoyed. Plus really great food on offer at the pub and brewery.</p>
                 </div>
             </div>
-
-            <!-- IMAGE GRID: hot tub (paddock.jpg) + interior tent (interior.jpg) -->
+            
+            <!-- IMAGE GRID -->
             <div class="image-grid-2">
                 <img src="./paddock.jpg" alt="Wood-fired hot tub under the stars" />
                 <img src="./interior.jpg" alt="Luxury bell tent interior with cosy bedding" />
@@ -472,7 +583,7 @@
         </div>
     </section>
 
-    <!-- ===== FOR TEAMS (Corporate / Groups) ===== -->
+    <!-- ===== FOR TEAMS ===== -->
     <section id="teams" class="section-dark">
         <div class="container">
             <span class="section-tag">✦ For teams, corporates &amp; groups</span>
@@ -540,7 +651,6 @@
                 We don't do rigid packages. When you enquire, we'll ask about your group's vibe and build it with you.
             </p>
 
-            <!-- Eat, drink, stroll -->
             <h3 style="margin-top:2.5rem; font-family:'Inter',sans-serif; font-weight:600; font-size:1.2rem; color:#c4d0c4;">
                 <i class="fas fa-utensils" style="color:#b8d0b8; margin-right:8px;"></i> Eat, drink &amp; stroll
             </h3>
@@ -553,7 +663,6 @@
                 <strong>Food cart tip:</strong> Let us know which cuisine your team fancies when booking, and we'll confirm what's firing up at the brewery that evening.
             </p>
 
-            <!-- Riverside -->
             <h3 style="margin-top:2rem; font-family:'Inter',sans-serif; font-weight:600; font-size:1.2rem; color:#c4d0c4;">
                 <i class="fas fa-water" style="color:#b8d0b8; margin-right:8px;"></i> Riverside walks &amp; water
             </h3>
@@ -562,7 +671,6 @@
                 <em>(bring your own gear – we don't supply boards or boats, but we'll point you to the best spot)</em>.
             </p>
 
-            <!-- Active -->
             <h3 style="margin-top:2rem; font-family:'Inter',sans-serif; font-weight:600; font-size:1.2rem; color:#c4d0c4;">
                 <i class="fas fa-basketball-ball" style="color:#b8d0b8; margin-right:8px;"></i> Active &amp; competitive
             </h3>
@@ -576,7 +684,6 @@
                 Nothing bonds a team quicker than a cut‑throat Pétanque tournament with a local ale in hand.
             </p>
 
-            <!-- Essentials -->
             <h3 style="margin-top:2rem; font-family:'Inter',sans-serif; font-weight:600; font-size:1.2rem; color:#c4d0c4;">
                 <i class="fas fa-shopping-bag" style="color:#b8d0b8; margin-right:8px;"></i> The essentials
             </h3>
@@ -593,15 +700,14 @@
             <span class="section-tag">✦ Meet the family</span>
             <h2>We're Jonno &amp; the family.</h2>
             <p style="max-width:640px; font-size:1.1rem; color:#4a4a47; margin:0.25rem auto 0;">
-                We started Boat Lane Paddock because we love seeing people reconnect around a fire.
-                We're not a faceless corporation – we're your neighbours in Worcestershire.
+                We started Boat Lane Paddock because we love seeing people reconnect around a fire. 
+                We're not a faceless corporation – we're your neighbours in Worcestershire. 
                 When you message us, you're messaging us directly.
             </p>
             <div class="dog-note" style="background:#f0ede8; color:#8a7a6a;">
-                🐾 You're sure to make friends with our very friendly fox red Labrador, <strong>Acer</strong>
+                🐾 You're sure to make friends with our very friendly fox red Labrador, <strong>Acer</strong> 
                 <span style="font-weight:400;">(who we can happily keep out of your way if you prefer!)</span>
             </div>
-            <!-- FAMILY PHOTO: name your file "family.jpg" (family shot on the river) -->
             <img src="./family.jpg" alt="Jonno and family on the river" class="circle-image" />
         </div>
     </section>
@@ -682,39 +788,18 @@
         </div>
     </footer>
 
+    <!-- ===== LIGHTBOX HTML ===== -->
+    <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
+        <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+        <button class="lightbox-nav prev" onclick="navigateLightbox(-1, event)">‹</button>
+        <button class="lightbox-nav next" onclick="navigateLightbox(1, event)">›</button>
+        <img id="lightbox-img" src="" alt="Enlarged view" />
+        <div class="lightbox-counter" id="lightbox-counter">1 / 1</div>
+    </div>
+
     <script>
-        function sendWhatsApp(event) {
-            event.preventDefault();
-
-            // Get form values
-            const name = document.getElementById('name').value;
-            const company = document.getElementById('company').value;
-            const email = document.getElementById('email').value;
-            const groupSize = document.getElementById('groupSize').value;
-            const dates = document.getElementById('dates').value;
-            const message = document.getElementById('message').value;
-
-            // Build the WhatsApp message
-            let whatsappMessage = '🆕 *New Enquiry from Boat Lane Paddock*%0A%0A';
-            whatsappMessage += `*Name:* ${name}%0A`;
-            if (company) whatsappMessage += `*Company:* ${company}%0A`;
-            whatsappMessage += `*Email:* ${email}%0A`;
-            whatsappMessage += `*Group Size:* ${groupSize}%0A`;
-            if (dates) whatsappMessage += `*Preferred Dates:* ${dates}%0A`;
-            if (message) whatsappMessage += `*Message:* ${message}%0A`;
-            whatsappMessage += '%0A📩 Reply to this enquiry directly from WhatsApp.';
-
-            // Open WhatsApp with the pre-filled message
-            const whatsappUrl = `https://wa.me/447530071958?text=${whatsappMessage}`;
-            window.open(whatsappUrl, '_blank');
-
-            // Show confirmation
-            alert('✅ Your enquiry has been prepared for WhatsApp. Click "Send" to message Jonno directly.');
-
-            // Reset the form
-            document.getElementById('contactForm').reset();
-        }
-    </script>
-
-</body>
-</html>
+        // ===== GALLERY IMAGES =====
+        // Add your popout images here – just add new filenames to the array
+        const galleryImages = [
+            { src: './hero.jpg' },
+            {
