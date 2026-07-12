@@ -1,0 +1,5 @@
+# Netlify configuration
+# This is a static HTML site (no build step). The site files live in the
+# "boat lane paddock" folder, so we point Netlify's publish directory there.
+[build]
+  publish = "boat lane paddock"
