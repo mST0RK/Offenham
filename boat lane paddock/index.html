@@ -71,20 +71,32 @@
         .btn-primary {
             background: #1f3b2c;
             color: #ffffff;
+            box-shadow: 0 4px 14px rgba(31, 59, 44, 0.15);
         }
         .btn-primary:hover {
             background: #2a4f3a;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(31, 59, 44, 0.20);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px rgba(31, 59, 44, 0.25);
+        }
+        .btn-primary:active {
+            transform: translateY(1px) scale(0.98);
+            box-shadow: 0 2px 8px rgba(31, 59, 44, 0.15);
+            transition-duration: 0.08s;
         }
         .btn-whatsapp {
             background: #25D366;
             color: #fff;
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.25);
         }
         .btn-whatsapp:hover {
             background: #1da851;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.30);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px rgba(37, 211, 102, 0.35);
+        }
+        .btn-whatsapp:active {
+            transform: translateY(1px) scale(0.98);
+            box-shadow: 0 2px 8px rgba(37, 211, 102, 0.15);
+            transition-duration: 0.08s;
         }
         .nav-links .btn-primary {
             color: #ffffff !important;
@@ -217,6 +229,7 @@
         .feature-card:nth-child(3) { animation-delay: 0.3s; }
         .feature-card:hover {
             transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
         }
         .feature-card i {
             font-size: 1.8rem;
@@ -254,10 +267,20 @@
             border-radius: 40px;
             font-size: 0.9rem;
             font-weight: 500;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+        .pill:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
         .section-dark .pill {
             background: #3a5f4a;
             color: #f0f5f0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .section-dark .pill:hover {
+            background: #4a6f5a;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
         }
         .image-grid-2 {
             display: grid;
@@ -300,6 +323,7 @@
             font-weight: 700;
             font-size: 1.2rem;
             margin: 1rem 0 0.5rem;
+            box-shadow: 0 4px 14px rgba(31, 59, 44, 0.15);
         }
         .price-badge span {
             font-weight: 400;
@@ -539,7 +563,6 @@
                     <i class="fab fa-whatsapp"></i> Message Jonno
                 </a>
             </div>
-            <!-- HERO PHOTO -->
             <img src="./hero.jpg" alt="Boat Lane Paddock at night" class="hero-image" />
         </div>
     </section>
@@ -556,7 +579,7 @@
             <p style="max-width:680px; font-size:1.1rem; color:#4a4a47; margin-top:0.25rem;">
                 Includes <strong>2 luxury family bell tents</strong> kitted out with all you'll need, a 
                 <strong>wood-fired hot tub</strong>, hot shower and toilet facilities. 
-                Canadian canoe, push bikes, space to play and beautiful sunsets!
+                Bring your paddle boards, push bikes, we have volleyball, table tennis and beautiful sunsets!
             </p>
             <p style="max-width:680px; font-size:1rem; color:#6a6a67; margin-top:0.5rem;">
                 <strong>For whole site bookings:</strong> Enquire for a tailored quote based on your group size, extra tents, and bookable experiences.
@@ -575,7 +598,6 @@
                 </div>
             </div>
             
-            <!-- IMAGE GRID -->
             <div class="image-grid-2">
                 <img src="./paddock.jpg" alt="Wood-fired hot tub under the stars" />
                 <img src="./interior.jpg" alt="Luxury bell tent interior with cosy bedding" />
@@ -611,33 +633,45 @@
         </div>
     </section>
 
-    <!-- ===== WELLBEING EXPERIENCES ===== -->
+    <!-- ===== WELLBEING EXPERIENCES (UPDATED: Alpacas & Full English) ===== -->
     <section id="wellbeing" class="section-light">
         <div class="container">
-            <span class="section-tag">✦ Recharge &amp; reconnect</span>
-            <h2>Group Wellbeing Experiences</h2>
+            <span class="section-tag">✦ Explore &amp; discover</span>
+            <h2>Meet the Alpacas at Bretforton Manor</h2>
             <p style="max-width:680px; font-size:1.1rem; color:#4a4a47; margin-top:0.25rem;">
-                Enhance your stay with one of our curated wellbeing experiences. Perfect for team bonding, stress relief, or simply trying something new.
+                A truly unique Cotswolds experience just a short drive from the paddock.
             </p>
             <div class="grid-3" style="margin-top:2.5rem;">
                 <div class="feature-card">
-                    <i class="fas fa-yoga" style="color:#1f3b2c;"></i>
-                    <h3>Yoga &amp; Meditation</h3>
-                    <p>Start the day with a guided morning flow overlooking the paddock, or wind down with an evening meditation session. All levels welcome.</p>
+                    <i class="fas fa-otter" style="color:#1f3b2c;"></i>
+                    <h3>Meet the Alpacas</h3>
+                    <p>Get up close and personal with these gentle, curious creatures. A memorable experience for all ages, set in the beautiful grounds of Bretforton Manor.</p>
                 </div>
                 <div class="feature-card">
-                    <i class="fas fa-music" style="color:#1f3b2c;"></i>
-                    <h3>Soundfulness with Chris Hope</h3>
-                    <p>An immersive sonic journey using Tibetan bowls. Let the vibrations melt away stress in this deeply relaxing evening experience.</p>
+                    <i class="fas fa-swimmer" style="color:#1f3b2c;"></i>
+                    <h3>Private Pool &amp; Gym</h3>
+                    <p>Enjoy exclusive access to the manor's private swimming pool and gym facilities — the perfect way to unwind or keep up your routine during your stay.</p>
                 </div>
                 <div class="feature-card">
-                    <i class="fas fa-leaf" style="color:#1f3b2c;"></i>
-                    <h3>Tea Ceremony</h3>
-                    <p>A grounding, slow-paced ritual to centre your team before a fireside debrief. A beautiful way to connect and reset.</p>
+                    <i class="fas fa-tree" style="color:#1f3b2c;"></i>
+                    <h3>Gardens &amp; Orchard</h3>
+                    <p>Stroll through five acres of stunning gardens, explore the trout pond, flower gardens, and orchard. A tranquil escape in the heart of the North Cotswolds.</p>
                 </div>
             </div>
+            <div style="margin-top:2rem; padding:24px 28px; background:#f6f4f0; border-radius:20px; text-align:center; max-width:680px; margin-left:auto; margin-right:auto;">
+                <p style="font-size:1rem; color:#4a4a47; margin-bottom:0.25rem;">
+                    <i class="fas fa-utensils" style="color:#1f3b2c; margin-right:10px;"></i>
+                    <strong>Full English Breakfast</strong> — £10 per head
+                </p>
+                <p style="font-size:0.9rem; color:#6a6a67;">
+                    Crispy bacon, sausages, eggs, tomatoes, mushrooms, and toast. Served fresh at the paddock.
+                </p>
+            </div>
             <p style="text-align:center; margin-top:2rem; color:#6a6a67; font-size:0.95rem;">
-                <em>Fees depend on group size — enquire for a custom quote. Can't decide? Ask us about a bespoke package combining multiple experiences.</em>
+                <em>Bretforton Manor is a Grade II listed historic Jacobean house and estate located in the village of Bretforton in the North Cotswolds. The manor sits within five acres of gardens and has a history dating back to the medieval era.</em>
+            </p>
+            <p style="text-align:center; margin-top:0.5rem; color:#6a6a67; font-size:0.95rem;">
+                <em>Fees depend on group size — enquire for a custom quote.</em>
             </p>
         </div>
     </section>
@@ -754,52 +788,4 @@
                 </div>
                 <div class="form-group">
                     <label for="message" style="color:#c4d0c4;">Anything else? (vibe, add‑ons, dietary needs…)</label>
-                    <textarea id="message" name="message" placeholder="Tell us what your gang is looking for – we'll build a quote around it."></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; color:#ffffff;">
-                    <i class="fab fa-whatsapp" style="margin-right:10px;"></i> Send Enquiry via WhatsApp
-                </button>
-            </form>
-
-            <div style="text-align:center; margin-top:2rem; padding-top:2rem; border-top:1px solid #3a5f4a;">
-                <p style="font-weight:500; margin-bottom:0.75rem; color:#c4d0c4;">Prefer to message direct?</p>
-                <a href="https://wa.me/447530071958" class="btn btn-whatsapp" target="_blank" style="padding:14px 40px;">
-                    <i class="fab fa-whatsapp"></i> Message Jonno on WhatsApp
-                </a>
-                <p style="font-size:0.85rem; color:#aabcaa; margin-top:0.75rem;">
-                    Or call Jonno direct: <strong>07530 071 958</strong> – we reply within 2 hours, usually much faster.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== FOOTER ===== -->
-    <footer>
-        <div class="container">
-            <p style="margin-bottom:6px;">
-                <strong>Boat Lane Paddock</strong> &nbsp;·&nbsp; Worcestershire countryside
-            </p>
-            <p style="font-size:0.8rem;">
-                &copy; 2026 · Family-run ·
-                <a href="#contact">Enquire</a> &nbsp;·&nbsp;
-                <a href="https://wa.me/447530071958" target="_blank">WhatsApp Jonno</a> &nbsp;·&nbsp;
-                <a href="tel:07530071958">07530 071 958</a>
-            </p>
-        </div>
-    </footer>
-
-    <!-- ===== LIGHTBOX HTML ===== -->
-    <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
-        <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
-        <button class="lightbox-nav prev" onclick="navigateLightbox(-1, event)">‹</button>
-        <button class="lightbox-nav next" onclick="navigateLightbox(1, event)">›</button>
-        <img id="lightbox-img" src="" alt="Enlarged view" />
-        <div class="lightbox-counter" id="lightbox-counter">1 / 1</div>
-    </div>
-
-    <script>
-        // ===== GALLERY IMAGES =====
-        // Add your popout images here – just add new filenames to the array
-        const galleryImages = [
-            { src: './hero.jpg' },
-            {
+                    <textarea id="message" name="message" placeholder="Tell us what your gang is looking for – we'll build a quote
