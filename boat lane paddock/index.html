@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Boat Lane Paddock – Family Friendly Bell Tent Campsite</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,6 +24,7 @@
             background: #faf8f5;
             color: #2c2b28;
             line-height: 1.6;
+            overflow-x: hidden;
         }
         .container {
             max-width: 1120px;
@@ -390,90 +391,229 @@
             color: #d4e0d4;
         }
 
-        /* ===== LIGHTBOX OVERLAY ===== */
-        .lightbox-overlay {
+        /* ===== CLICKABLE IMAGE STYLES ===== */
+        .clickable-image {
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .clickable-image:hover {
+            transform: scale(1.01);
+            opacity: 0.95;
+        }
+        .clickable-image::after {
+            content: '🔍';
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            font-size: 1.2rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 6px 10px;
+            border-radius: 30px;
+            color: #fff;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .clickable-image:hover::after {
+            opacity: 1;
+        }
+
+        /* ===== CUSTOM GALLERY OVERLAY ===== */
+        .gallery-overlay {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.92);
-            z-index: 1000;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 40px;
             opacity: 0;
-            transition: opacity 0.4s ease;
-            backdrop-filter: blur(8px);
+            transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            touch-action: none;
         }
-        .lightbox-overlay.active {
+        .gallery-overlay.active {
             display: flex;
             opacity: 1;
         }
-        .lightbox-overlay img {
+
+        .gallery-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .gallery-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            height: 100%;
+            align-items: center;
+            will-change: transform;
+        }
+
+        .gallery-slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .gallery-slide img {
             max-width: 100%;
-            max-height: 90vh;
+            max-height: 85vh;
             object-fit: contain;
             border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            transform: scale(0.95);
-            transition: transform 0.4s ease;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            user-select: none;
+            -webkit-user-drag: none;
+            transition: transform 0.3s ease;
+            touch-action: none;
         }
-        .lightbox-overlay.active img {
-            transform: scale(1);
-        }
-        .lightbox-close {
+
+        .gallery-controls {
             position: fixed;
-            top: 24px;
-            right: 32px;
-            color: #fff;
-            font-size: 2.4rem;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-            background: none;
-            border: none;
-            z-index: 1001;
-        }
-        .lightbox-close:hover {
-            transform: rotate(90deg);
-        }
-        .lightbox-counter {
-            position: fixed;
-            bottom: 30px;
+            bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
-            color: rgba(255, 255, 255, 0.6);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            letter-spacing: 0.05em;
-            background: rgba(0, 0, 0, 0.4);
-            padding: 8px 20px;
-            border-radius: 40px;
-            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 12px 20px;
+            border-radius: 60px;
+            z-index: 2002;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .lightbox-nav {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
+
+        .gallery-controls button {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.4rem;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 40px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-controls button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        .gallery-controls button:active {
+            transform: scale(0.9);
+        }
+
+        .gallery-controls .arrow-btn {
+            font-size: 1.6rem;
+            padding: 8px 16px;
+        }
+
+        .gallery-controls .fullscreen-btn {
+            font-size: 1.2rem;
+            padding: 8px 14px;
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 0;
+            margin-left: 4px;
+        }
+
+        .gallery-controls .fullscreen-btn:first-child {
+            border-left: none;
+            margin-left: 0;
+        }
+
+        .gallery-counter {
             color: rgba(255, 255, 255, 0.7);
-            font-size: 2.8rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            min-width: 50px;
+            text-align: center;
+            letter-spacing: 0.05em;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .gallery-close {
+            position: fixed;
+            top: 24px;
+            right: 28px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 2.2rem;
             cursor: pointer;
             background: none;
             border: none;
-            transition: all 0.2s ease;
-            padding: 20px 12px;
-            z-index: 1001;
+            z-index: 2002;
+            transition: all 0.3s ease;
+            padding: 8px;
+            line-height: 1;
         }
-        .lightbox-nav:hover {
+
+        .gallery-close:hover {
             color: #fff;
-            transform: translateY(-50%) scale(1.1);
+            transform: rotate(90deg) scale(1.1);
         }
-        .lightbox-nav.prev {
-            left: 20px;
+
+        .gallery-overlay.is-fullscreen .gallery-slide img {
+            max-height: 92vh;
+            border-radius: 0;
         }
-        .lightbox-nav.next {
-            right: 20px;
+
+        .gallery-overlay.is-fullscreen .gallery-controls {
+            bottom: 30px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-overlay.is-fullscreen .gallery-close {
+            top: 20px;
+            right: 24px;
+        }
+
+        .gallery-dots {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 2002;
+        }
+
+        .gallery-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-dot.active {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.3);
+        }
+
+        .gallery-dot:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .gallery-overlay.is-fullscreen .gallery-dots {
+            display: none;
         }
 
         @media (max-width: 700px) {
@@ -500,23 +640,69 @@
             .image-grid-2 img {
                 height: 200px;
             }
-            .lightbox-nav {
-                font-size: 2rem;
-                padding: 12px 8px;
+            .gallery-slide {
+                padding: 20px;
             }
-            .lightbox-nav.prev { left: 8px; }
-            .lightbox-nav.next { right: 8px; }
-            .lightbox-close {
+            .gallery-slide img {
+                max-height: 70vh;
+            }
+            .gallery-controls {
+                bottom: 24px;
+                padding: 10px 14px;
+                gap: 8px;
+            }
+            .gallery-controls button {
+                font-size: 1.2rem;
+                padding: 6px 10px;
+            }
+            .gallery-controls .arrow-btn {
+                font-size: 1.4rem;
+                padding: 6px 12px;
+            }
+            .gallery-controls .fullscreen-btn {
+                font-size: 1rem;
+                padding: 6px 10px;
+            }
+            .gallery-counter {
+                font-size: 0.75rem;
+                min-width: 40px;
+            }
+            .gallery-close {
                 top: 16px;
-                right: 20px;
-                font-size: 2rem;
+                right: 18px;
+                font-size: 1.8rem;
             }
-            .lightbox-overlay {
-                padding: 16px;
+            .gallery-dots {
+                bottom: 80px;
+            }
+            .gallery-dot {
+                width: 6px;
+                height: 6px;
             }
         }
 
-        /* Animations */
+        @media (max-width: 480px) {
+            .gallery-slide img {
+                max-height: 60vh;
+            }
+            .gallery-controls {
+                bottom: 16px;
+                padding: 8px 12px;
+                gap: 4px;
+            }
+            .gallery-controls button {
+                font-size: 1rem;
+                padding: 4px 8px;
+            }
+            .gallery-controls .arrow-btn {
+                font-size: 1.2rem;
+                padding: 4px 10px;
+            }
+            .gallery-dots {
+                bottom: 70px;
+            }
+        }
+
         @keyframes fadeUp {
             to {
                 opacity: 1;
@@ -527,7 +713,7 @@
 </head>
 <body>
 
-    <!-- ===== HEADER ===== -->
+    <!-- ===== HEADER (1) ===== -->
     <header>
         <div class="container nav-inner">
             <a href="#" class="logo">Boat Lane <span>Paddock</span></a>
@@ -542,7 +728,7 @@
         </div>
     </header>
 
-    <!-- ===== HERO ===== -->
+    <!-- ===== HERO (2) ===== -->
     <section class="hero">
         <div class="container">
             <span class="section-tag">✦ Worcestershire countryside</span>
@@ -563,11 +749,11 @@
                     <i class="fab fa-whatsapp"></i> Message Jonno
                 </a>
             </div>
-            <img src="./hero.jpg" alt="Boat Lane Paddock at night" class="hero-image" />
+            <img src="./hero.jpg" alt="Boat Lane Paddock at night" class="hero-image clickable-image" onclick="openGallery(0)" />
         </div>
     </section>
 
-    <!-- ===== THE PADDOCK ===== -->
+    <!-- ===== THE PADDOCK (3) ===== -->
     <section id="paddock" class="section-light">
         <div class="container">
             <span class="section-tag">✦ The space</span>
@@ -599,13 +785,13 @@
             </div>
             
             <div class="image-grid-2">
-                <img src="./paddock.jpg" alt="Wood-fired hot tub under the stars" />
-                <img src="./interior.jpg" alt="Luxury bell tent interior with cosy bedding" />
+                <img src="./paddock.jpg" alt="Wood-fired hot tub under the stars" class="clickable-image" onclick="openGallery(1)" />
+                <img src="./interior.jpg" alt="Luxury bell tent interior with cosy bedding" class="clickable-image" onclick="openGallery(2)" />
             </div>
         </div>
     </section>
 
-    <!-- ===== FOR TEAMS ===== -->
+    <!-- ===== FOR TEAMS (4) ===== -->
     <section id="teams" class="section-dark">
         <div class="container">
             <span class="section-tag">✦ For teams, corporates &amp; groups</span>
@@ -633,7 +819,7 @@
         </div>
     </section>
 
-    <!-- ===== WELLBEING EXPERIENCES (UPDATED: Alpacas & Full English) ===== -->
+    <!-- ===== WELLBEING (5) ===== -->
     <section id="wellbeing" class="section-light">
         <div class="container">
             <span class="section-tag">✦ Explore &amp; discover</span>
@@ -676,7 +862,7 @@
         </div>
     </section>
 
-    <!-- ===== ADD-ONS & LOCAL AREA ===== -->
+    <!-- ===== ADD-ONS (6) ===== -->
     <section id="addons" class="section-dark">
         <div class="container">
             <span class="section-tag">✦ Make it unforgettable</span>
@@ -728,7 +914,7 @@
         </div>
     </section>
 
-    <!-- ===== ABOUT / MEET THE FAMILY ===== -->
+    <!-- ===== ABOUT / MEET THE FAMILY (7) ===== -->
     <section id="about" class="section-light">
         <div class="container" style="text-align:center;">
             <span class="section-tag">✦ Meet the family</span>
@@ -742,11 +928,11 @@
                 🐾 You're sure to make friends with our very friendly fox red Labrador, <strong>Acer</strong> 
                 <span style="font-weight:400;">(who we can happily keep out of your way if you prefer!)</span>
             </div>
-            <img src="./family.jpg" alt="Jonno and family on the river" class="circle-image" />
+            <img src="./family.jpg" alt="Jonno and family on the river" class="circle-image clickable-image" onclick="openGallery(3)" />
         </div>
     </section>
 
-    <!-- ===== CONTACT & AVAILABILITY ===== -->
+    <!-- ===== CONTACT & AVAILABILITY (8) ===== -->
     <section id="contact" class="section-dark">
         <div class="container" style="max-width:680px;">
             <span class="section-tag">✦ Let's find your date</span>
@@ -788,4 +974,275 @@
                 </div>
                 <div class="form-group">
                     <label for="message" style="color:#c4d0c4;">Anything else? (vibe, add‑ons, dietary needs…)</label>
-                    <textarea id="message" name="message" placeholder="Tell us what your gang is looking for – we'll build a quote
+                    <textarea id="message" name="message" placeholder="Tell us what your gang is looking for – we'll build a quote around it."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; color:#ffffff;">
+                    <i class="fab fa-whatsapp" style="margin-right:10px;"></i> Send Enquiry via WhatsApp
+                </button>
+            </form>
+
+            <div style="text-align:center; margin-top:2rem; padding-top:2rem; border-top:1px solid #3a5f4a;">
+                <p style="font-weight:500; margin-bottom:0.75rem; color:#c4d0c4;">Prefer to message direct?</p>
+                <a href="https://wa.me/447530071958" class="btn btn-whatsapp" target="_blank" style="padding:14px 40px;">
+                    <i class="fab fa-whatsapp"></i> Message Jonno on WhatsApp
+                </a>
+                <p style="font-size:0.85rem; color:#aabcaa; margin-top:0.75rem;">
+                    Or call Jonno direct: <strong>07530 071 958</strong> – we reply within 2 hours, usually much faster.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER (9) ===== -->
+    <footer>
+        <div class="container">
+            <p style="margin-bottom:6px;">
+                <strong>Boat Lane Paddock</strong> &nbsp;·&nbsp; Worcestershire countryside
+            </p>
+            <p style="font-size:0.8rem;">
+                &copy; 2026 · Family-run ·
+                <a href="#contact">Enquire</a> &nbsp;·&nbsp;
+                <a href="https://wa.me/447530071958" target="_blank">WhatsApp Jonno</a> &nbsp;·&nbsp;
+                <a href="tel:07530071958">07530 071 958</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- ===== GALLERY HTML (10) ===== -->
+    <div class="gallery-overlay" id="galleryOverlay">
+        <button class="gallery-close" onclick="closeGallery()">✕</button>
+        
+        <div class="gallery-container">
+            <div class="gallery-track" id="galleryTrack">
+                <!-- Images will be dynamically inserted by JavaScript -->
+            </div>
+        </div>
+
+        <div class="gallery-dots" id="galleryDots"></div>
+
+        <div class="gallery-controls">
+            <button class="arrow-btn" onclick="navigateGallery(-1)">‹</button>
+            <span class="gallery-counter" id="galleryCounter">1 / 1</span>
+            <button class="arrow-btn" onclick="navigateGallery(1)">›</button>
+            <button class="fullscreen-btn" onclick="toggleFullscreen()" title="Toggle Fullscreen">
+                <i class="fas fa-expand" id="fullscreenIcon"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- ===== JAVASCRIPT (10) ===== -->
+    <script>
+        // ===== GALLERY IMAGES =====
+        // Add your images here - these will appear in the gallery
+        const galleryImages = [
+            { src: './hero.jpg', alt: 'Boat Lane Paddock at night' },
+            { src: './paddock.jpg', alt: 'Wood-fired hot tub under the stars' },
+            { src: './interior.jpg', alt: 'Luxury bell tent interior with cosy bedding' },
+            { src: './family.jpg', alt: 'Jonno and family on the river' },
+            // Add extra popout images here - label them popout001.jpg, popout002.jpg, etc.
+            { src: './popout001.jpg', alt: 'Gallery image 1' },
+            { src: './popout002.jpg', alt: 'Gallery image 2' },
+            { src: './popout003.jpg', alt: 'Gallery image 3' },
+            // Add more as needed:
+            // { src: './popout004.jpg', alt: 'Gallery image 4' },
+            // { src: './popout005.jpg', alt: 'Gallery image 5' },
+        ];
+
+        let currentIndex = 0;
+        let isFullscreen = false;
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let isDragging = false;
+        let startPos = 0;
+        let currentTranslate = 0;
+        let animationID = null;
+
+        // ===== OPEN GALLERY =====
+        function openGallery(index) {
+            currentIndex = index;
+            renderGallery();
+            const overlay = document.getElementById('galleryOverlay');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            updateGallery();
+        }
+
+        // ===== CLOSE GALLERY =====
+        function closeGallery() {
+            const overlay = document.getElementById('galleryOverlay');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+            if (isFullscreen) {
+                toggleFullscreen();
+            }
+        }
+
+        // ===== RENDER GALLERY =====
+        function renderGallery() {
+            const track = document.getElementById('galleryTrack');
+            track.innerHTML = '';
+            
+            galleryImages.forEach((img, i) => {
+                const slide = document.createElement('div');
+                slide.className = 'gallery-slide';
+                
+                const imgElement = document.createElement('img');
+                imgElement.src = img.src;
+                imgElement.alt = img.alt || 'Gallery image';
+                imgElement.draggable = false;
+                imgElement.loading = 'lazy';
+                
+                slide.appendChild(imgElement);
+                track.appendChild(slide);
+            });
+
+            // Render dots
+            const dotsContainer = document.getElementById('galleryDots');
+            dotsContainer.innerHTML = '';
+            galleryImages.forEach((_, i) => {
+                const dot = document.createElement('div');
+                dot.className = 'gallery-dot' + (i === currentIndex ? ' active' : '');
+                dot.onclick = () => goToSlide(i);
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        // ===== UPDATE GALLERY =====
+        function updateGallery() {
+            const track = document.getElementById('galleryTrack');
+            const slideWidth = 100;
+            track.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
+            
+            // Update counter
+            document.getElementById('galleryCounter').textContent = 
+                `${currentIndex + 1} / ${galleryImages.length}`;
+            
+            // Update dots
+            document.querySelectorAll('.gallery-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentIndex);
+            });
+        }
+
+        // ===== NAVIGATE GALLERY =====
+        function navigateGallery(direction) {
+            const newIndex = currentIndex + direction;
+            if (newIndex >= 0 && newIndex < galleryImages.length) {
+                currentIndex = newIndex;
+                updateGallery();
+            }
+        }
+
+        function goToSlide(index) {
+            if (index >= 0 && index < galleryImages.length) {
+                currentIndex = index;
+                updateGallery();
+            }
+        }
+
+        // ===== TOGGLE FULLSCREEN =====
+        function toggleFullscreen() {
+            const overlay = document.getElementById('galleryOverlay');
+            isFullscreen = !isFullscreen;
+            
+            if (isFullscreen) {
+                overlay.classList.add('is-fullscreen');
+                document.getElementById('fullscreenIcon').className = 'fas fa-compress';
+            } else {
+                overlay.classList.remove('is-fullscreen');
+                document.getElementById('fullscreenIcon').className = 'fas fa-expand';
+            }
+        }
+
+        // ===== KEYBOARD CONTROLS =====
+        document.addEventListener('keydown', function(e) {
+            if (!document.getElementById('galleryOverlay').classList.contains('active')) return;
+            
+            if (e.key === 'ArrowLeft') navigateGallery(-1);
+            if (e.key === 'ArrowRight') navigateGallery(1);
+            if (e.key === 'Escape') closeGallery();
+            if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+        });
+
+        // ===== TOUCH CONTROLS (Swipe) =====
+        const galleryContainer = document.querySelector('.gallery-container');
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let isSwiping = false;
+
+        galleryContainer.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+            isSwiping = true;
+        }, { passive: true });
+
+        galleryContainer.addEventListener('touchmove', function(e) {
+            if (!isSwiping) return;
+            const touchEndX = e.changedTouches[0].screenX;
+            const touchEndY = e.changedTouches[0].screenY;
+            const diffX = touchStartX - touchEndX;
+            const diffY = touchStartY - touchEndY;
+            
+            // Only trigger swipe if horizontal movement is greater than vertical
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        galleryContainer.addEventListener('touchend', function(e) {
+            if (!isSwiping) return;
+            isSwiping = false;
+            
+            const touchEndX = e.changedTouches[0].screenX;
+            const touchEndY = e.changedTouches[0].screenY;
+            const diffX = touchStartX - touchEndX;
+            const diffY = touchStartY - touchEndY;
+            
+            // Only trigger swipe if horizontal movement is greater than vertical
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                if (diffX > 0) {
+                    navigateGallery(1); // Swipe left -> next
+                } else {
+                    navigateGallery(-1); // Swipe right -> previous
+                }
+            }
+        }, { passive: true });
+
+        // ===== CLOSE ON CLICK OUTSIDE IMAGE =====
+        document.getElementById('galleryOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeGallery();
+            }
+        });
+
+        // ===== WHATSAPP FORM HANDLER =====
+        function sendWhatsApp(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const company = document.getElementById('company').value;
+            const email = document.getElementById('email').value;
+            const groupSize = document.getElementById('groupSize').value;
+            const dates = document.getElementById('dates').value;
+            const message = document.getElementById('message').value;
+            
+            const whatsappNumber = '447530071958';
+            let text = `Hello Jonno! I'd like to enquire about booking Boat Lane Paddock.%0A%0A`;
+            text += `*Name:* ${name}%0A`;
+            if (company) text += `*Company:* ${company}%0A`;
+            text += `*Email:* ${email}%0A`;
+            text += `*Group Size:* ${groupSize}%0A`;
+            if (dates) text += `*Preferred Dates:* ${dates}%0A`;
+            if (message) text += `%0A*Message:* ${message}`;
+            
+            const url = `https://wa.me/${whatsappNumber}?text=${text}`;
+            window.open(url, '_blank');
+        }
+
+        console.log('✅ Gallery loaded with ' + galleryImages.length + ' images');
+        console.log('📸 Click any image to open the gallery');
+        console.log('🔄 Swipe left/right or use arrow buttons to navigate');
+        console.log('🖥️ Press F for fullscreen, ESC to close');
+    </script>
+
+</body>
+</html>
