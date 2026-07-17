@@ -1400,11 +1400,11 @@
             return opposites[direction] || 'right';
         }
 
-        // ===== GET DIRECTION CLASS =====
+        // ===== GET DIRECTION CLASS (INVERTED UP/DOWN) =====
         function getDirectionClass(direction, type) {
             const classes = {
-                'up': { exit: 'exit-up', enter: 'enter-from-up' },
-                'down': { exit: 'exit-down', enter: 'enter-from-down' },
+                'up': { exit: 'exit-down', enter: 'enter-from-down' },
+                'down': { exit: 'exit-up', enter: 'enter-from-up' },
                 'left': { exit: 'exit-left', enter: 'enter-from-left' },
                 'right': { exit: 'exit-right', enter: 'enter-from-right' }
             };
