@@ -1,5 +1,3 @@
-old 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +5,7 @@ old
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Boat Lane Paddock – Family Friendly Bell Tent Campsite</title>
 
-        <!-- ===== PRIMARY META TAGS ===== -->
+    <!-- ===== PRIMARY META TAGS ===== -->
     <meta name="description" content="Book the entire glamping site exclusively for your group of 20+. Luxury bell tents, wood-fired hot tub, firepits & riverside location. Perfect for teams, families & celebrations." />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://boatlaneglamping.co.uk/" />
@@ -443,7 +441,7 @@ old
             opacity: 1;
         }
 
-        /* ===== CUSTOM GALLERY OVERLAY ===== */
+        /* ===== MINIMALIST DIRECTIONAL GALLERY ===== */
         .gallery-overlay {
             display: none;
             position: fixed;
@@ -452,133 +450,28 @@ old
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             z-index: 2000;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             opacity: 0;
-            transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: opacity 0.4s ease;
             touch-action: none;
         }
+
         .gallery-overlay.active {
             display: flex;
             opacity: 1;
         }
 
-        .gallery-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .gallery-track {
-            display: flex;
-            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            height: 100%;
-            align-items: center;
-            will-change: transform;
-        }
-
-        .gallery-slide {
-            min-width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px;
-        }
-
-        .gallery-slide img {
-            max-width: 100%;
-            max-height: 85vh;
-            object-fit: contain;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-            user-select: none;
-            -webkit-user-drag: none;
-            transition: transform 0.3s ease;
-            touch-action: none;
-        }
-
-        .gallery-controls {
-            position: fixed;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 12px 20px;
-            border-radius: 60px;
-            z-index: 2002;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .gallery-controls button {
-            background: none;
-            border: none;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1.4rem;
-            cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 40px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .gallery-controls button:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            transform: scale(1.1);
-        }
-
-        .gallery-controls button:active {
-            transform: scale(0.9);
-        }
-
-        .gallery-controls .arrow-btn {
-            font-size: 1.6rem;
-            padding: 8px 16px;
-        }
-
-        .gallery-controls .fullscreen-btn {
-            font-size: 1.2rem;
-            padding: 8px 14px;
-            border-left: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 0;
-            margin-left: 4px;
-        }
-
-        .gallery-controls .fullscreen-btn:first-child {
-            border-left: none;
-            margin-left: 0;
-        }
-
-        .gallery-counter {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.85rem;
-            font-weight: 500;
-            min-width: 50px;
-            text-align: center;
-            letter-spacing: 0.05em;
-            font-variant-numeric: tabular-nums;
-        }
-
+        /* Close Button - Only visible control */
         .gallery-close {
             position: fixed;
-            top: 24px;
+            top: 20px;
             right: 28px;
             color: rgba(255, 255, 255, 0.6);
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             cursor: pointer;
             background: none;
             border: none;
@@ -586,6 +479,7 @@ old
             transition: all 0.3s ease;
             padding: 8px;
             line-height: 1;
+            font-family: 'Inter', sans-serif;
         }
 
         .gallery-close:hover {
@@ -593,51 +487,167 @@ old
             transform: rotate(90deg) scale(1.1);
         }
 
-        .gallery-overlay.is-fullscreen .gallery-slide img {
-            max-height: 92vh;
-            border-radius: 0;
-        }
-
-        .gallery-overlay.is-fullscreen .gallery-controls {
-            bottom: 30px;
-            background: rgba(0, 0, 0, 0.3);
-        }
-
-        .gallery-overlay.is-fullscreen .gallery-close {
-            top: 20px;
-            right: 24px;
-        }
-
-        .gallery-dots {
-            position: fixed;
-            bottom: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 8px;
-            z-index: 2002;
-        }
-
-        .gallery-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
+        /* Image Container */
+        .gallery-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-width: 1200px;
+            max-height: 90vh;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             cursor: pointer;
         }
 
-        .gallery-dot.active {
-            background: rgba(255, 255, 255, 0.8);
-            transform: scale(1.3);
+        .gallery-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
 
-        .gallery-dot:hover {
-            background: rgba(255, 255, 255, 0.5);
+        .gallery-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #1a1a1a;
+            will-change: transform;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        .gallery-overlay.is-fullscreen .gallery-dots {
-            display: none;
+        .gallery-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            user-select: none;
+            -webkit-user-drag: none;
+            pointer-events: none;
+        }
+
+        .gallery-slide.exit {
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .gallery-slide.enter {
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Direction classes for exit animation */
+        .gallery-slide.exit-up {
+            transform: translateY(-100%);
+        }
+        .gallery-slide.exit-down {
+            transform: translateY(100%);
+        }
+        .gallery-slide.exit-left {
+            transform: translateX(-100%);
+        }
+        .gallery-slide.exit-right {
+            transform: translateX(100%);
+        }
+
+        /* Direction classes for enter animation */
+        .gallery-slide.enter-from-up {
+            transform: translateY(-100%);
+        }
+        .gallery-slide.enter-from-down {
+            transform: translateY(100%);
+        }
+        .gallery-slide.enter-from-left {
+            transform: translateX(-100%);
+        }
+        .gallery-slide.enter-from-right {
+            transform: translateX(100%);
+        }
+
+        .gallery-slide.enter-active {
+            transform: translate(0, 0);
+        }
+
+        /* Loading State */
+        .gallery-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 1rem;
+            z-index: 1999;
+            animation: pulse 1.5s ease-in-out infinite;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.1em;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Tap hint - subtle guide for first-time users */
+        .gallery-hint {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 0.75rem;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            z-index: 2001;
+            animation: fadeHint 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes fadeHint {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Fullscreen */
+        .gallery-overlay.is-fullscreen .gallery-container {
+            max-width: 100%;
+            max-height: 100vh;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            .gallery-container {
+                max-height: 80vh;
+                border-radius: 8px;
+            }
+
+            .gallery-close {
+                top: 16px;
+                right: 20px;
+                font-size: 2rem;
+            }
+
+            .gallery-hint {
+                bottom: 24px;
+                font-size: 0.65rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-container {
+                max-height: 70vh;
+                border-radius: 0;
+            }
+
+            .gallery-close {
+                top: 12px;
+                right: 16px;
+                font-size: 1.8rem;
+            }
         }
 
         @media (max-width: 700px) {
@@ -664,67 +674,6 @@ old
             .image-grid-2 img {
                 height: 200px;
             }
-            .gallery-slide {
-                padding: 20px;
-            }
-            .gallery-slide img {
-                max-height: 70vh;
-            }
-            .gallery-controls {
-                bottom: 24px;
-                padding: 10px 14px;
-                gap: 8px;
-            }
-            .gallery-controls button {
-                font-size: 1.2rem;
-                padding: 6px 10px;
-            }
-            .gallery-controls .arrow-btn {
-                font-size: 1.4rem;
-                padding: 6px 12px;
-            }
-            .gallery-controls .fullscreen-btn {
-                font-size: 1rem;
-                padding: 6px 10px;
-            }
-            .gallery-counter {
-                font-size: 0.75rem;
-                min-width: 40px;
-            }
-            .gallery-close {
-                top: 16px;
-                right: 18px;
-                font-size: 1.8rem;
-            }
-            .gallery-dots {
-                bottom: 80px;
-            }
-            .gallery-dot {
-                width: 6px;
-                height: 6px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .gallery-slide img {
-                max-height: 60vh;
-            }
-            .gallery-controls {
-                bottom: 16px;
-                padding: 8px 12px;
-                gap: 4px;
-            }
-            .gallery-controls button {
-                font-size: 1rem;
-                padding: 4px 8px;
-            }
-            .gallery-controls .arrow-btn {
-                font-size: 1.2rem;
-                padding: 4px 10px;
-            }
-            .gallery-dots {
-                bottom: 70px;
-            }
         }
 
         @keyframes fadeUp {
@@ -735,7 +684,7 @@ old
         }
     </style>
 
-        <!-- ===== STRUCTURED DATA (JSON-LD) ===== -->
+    <!-- ===== STRUCTURED DATA (JSON-LD) ===== -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -971,7 +920,7 @@ old
         </div>
     </section>
     
-           <!-- ===== SOUNDFULNESS (NEW) ===== -->
+    <!-- ===== SOUNDFULNESS (NEW) ===== -->
     <section id="soundfulness" class="section-light">
         <div class="container">
             <span class="section-tag">✦ Sound &amp; wellness</span>
@@ -980,7 +929,7 @@ old
                 Elevate your retreat with a truly immersive Sound Bath experience, available to book for your group.
             </p>
             
-            <!-- NEW: Soundfulness Image -->
+            <!-- Soundfulness Image -->
             <div style="margin-top:1.5rem; border-radius:20px; overflow:hidden; box-shadow:0 8px 28px rgba(0,0,0,0.08);">
                 <img src="./soundfulness.jpg" alt="Soundfulness sound bath experience" style="width:100%; max-height:400px; object-fit:cover; display:block;" />
             </div>
@@ -1018,7 +967,7 @@ old
         </div>
     </section>
 
-        <!-- ===== ADD-ONS (6) - UPDATED WITH IMAGES ===== -->
+    <!-- ===== ADD-ONS (6) - UPDATED WITH IMAGES ===== -->
     <section id="addons" class="section-dark">
         <div class="container">
             <span class="section-tag">✦ Make it unforgettable</span>
@@ -1027,7 +976,7 @@ old
                 We don't do rigid packages. When you enquire, we'll ask about your group's vibe and build it with you.
             </p>
 
-            <!-- NEW: Double Image Bar -->
+            <!-- Double Image Bar -->
             <div class="image-grid-2" style="margin-top:1.5rem;">
                 <img src="./addons-river.jpg" alt="Riverside pub and paddleboarding" class="clickable-image" style="border-radius:20px; width:100%; height:260px; object-fit:cover; box-shadow:0 8px 28px rgba(0,0,0,0.15);" />
                 <img src="./addons-petanque.jpg" alt="Pétanque and outdoor activities" class="clickable-image" style="border-radius:20px; width:100%; height:260px; object-fit:cover; box-shadow:0 8px 28px rgba(0,0,0,0.15);" />
@@ -1152,7 +1101,7 @@ old
         </div>
     </section>
     
-        <!-- ===== REVIEWS (NEW) ===== -->
+    <!-- ===== REVIEWS (NEW) ===== -->
     <section id="reviews" class="section-dark">
         <div class="container">
             <span class="section-tag">✦ Guest experiences</span>
@@ -1173,7 +1122,7 @@ old
                         <i class="fas fa-star"></i>
                     </div>
                     <p style="color:#d4e0d4; font-size:0.95rem; line-height:1.7; flex-grow:1; font-style:italic;">
-                        “We stayed for a few nights with our friends and used both bell tents. We had an amazing time enjoying music, craft beer, fires and bbqs and a very special hot tub under the stars. We were offered firewood and the use of a paddle board and row boat which was great fun to play with down at the river- we rowed into Evesham! The location has all you need for a long weekend as the local shop, pubs, microbrewery and river are all on your doorstep. We also enjoyed a walk around the village and there’s a great park and playing field if you want it. However, with the volleyball and activities on the site we had all we needed. The bell tents were absolutely beautiful with every single thing considered. I especially enjoyed the crockery, proper bed and furnishings which made it top notch glamping. Thank you to the brilliant hosts Jonny and Antonia they were really friendly and attentive.”
+                        “We stayed for a few nights with our friends and used both bell tents. We had an amazing time enjoying music, craft beer, fires and bbqs and a very special hot tub under the stars. We were offered firewood and the use of a paddle board and row boat which was great fun to play with down at the river- we rowed into Evesham! The location has all you need for a long weekend as the local shop, pubs, microbrewery and river are all on your doorstep. We also enjoyed a walk around the village and there's a great park and playing field if you want it. However, with the volleyball and activities on the site we had all we needed. The bell tents were absolutely beautiful with every single thing considered. I especially enjoyed the crockery, proper bed and furnishings which made it top notch glamping. Thank you to the brilliant hosts Jonny and Antonia they were really friendly and attentive.”
                     </p>
                     <div style="margin-top:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.08);">
                         <p style="color:#c4d0c4; font-weight:600; font-size:0.95rem;">
@@ -1225,7 +1174,7 @@ old
 
             </div>
 
-            <!-- Optional: Trust Badge / Call to Action -->
+            <!-- Trust Badge / Call to Action -->
             <div style="text-align:center; margin-top:2.5rem;">
                 <p style="color:#aabcaa; font-size:0.95rem;">
                     <i class="fas fa-heart" style="color:#b8d0b8; margin-right:8px;"></i>
@@ -1320,59 +1269,77 @@ old
         </div>
     </footer>
 
-    <!-- ===== GALLERY HTML ===== -->
+    <!-- ===== MINIMALIST DIRECTIONAL GALLERY HTML ===== -->
     <div class="gallery-overlay" id="galleryOverlay">
+        <!-- Close Button - Only Control -->
         <button class="gallery-close" onclick="closeGallery()">✕</button>
-        
-        <div class="gallery-container">
-            <div class="gallery-track" id="galleryTrack">
+
+        <!-- Loading Indicator -->
+        <div class="gallery-loading" id="galleryLoading">Loading...</div>
+
+        <!-- Image Container -->
+        <div class="gallery-container" id="galleryContainer">
+            <div class="gallery-wrapper" id="galleryWrapper">
                 <!-- Images will be dynamically inserted by JavaScript -->
             </div>
         </div>
 
-        <div class="gallery-dots" id="galleryDots"></div>
-
-        <div class="gallery-controls">
-            <button class="arrow-btn" onclick="navigateGallery(-1)">‹</button>
-            <span class="gallery-counter" id="galleryCounter">1 / 1</span>
-            <button class="arrow-btn" onclick="navigateGallery(1)">›</button>
-            <button class="fullscreen-btn" onclick="toggleFullscreen()" title="Toggle Fullscreen">
-                <i class="fas fa-expand" id="fullscreenIcon"></i>
-            </button>
-        </div>
+        <!-- Subtle hint for first-time users -->
+        <div class="gallery-hint">Tap to navigate</div>
     </div>
 
     <!-- ===== JAVASCRIPT ===== -->
     <script>
-        // ===== GALLERY IMAGES - FIXED =====
-        // Only include images that actually exist on your server
+        // ===== MINIMALIST DIRECTIONAL GALLERY =====
         const galleryImages = [
-            
             { src: './popout001.jpg', alt: 'Gallery image 1' },
             { src: './popout002.jpg', alt: 'Gallery image 2' },
             { src: './popout003.jpg', alt: 'Gallery image 3' },
-            { src: './popout004.jpg', alt: 'Gallery image 1' },
-            { src: './popout005.jpg', alt: 'Gallery image 2' },
-            { src: './popout006.jpg', alt: 'Gallery image 3' },
-            { src: './popout007.jpg', alt: 'Gallery image 1' },
-            { src: './popout008.jpg', alt: 'Gallery image 2' },
-            { src: './popout009.jpg', alt: 'Gallery image 3' },
-            { src: './popout010.jpg', alt: 'Gallery image 1' },
-            { src: './popout011.jpg', alt: 'Gallery image 2' },
-            { src: './popout012.jpg', alt: 'Gallery image 3' },
+            { src: './popout004.jpg', alt: 'Gallery image 4' },
+            { src: './popout005.jpg', alt: 'Gallery image 5' },
+            { src: './popout006.jpg', alt: 'Gallery image 6' },
+            { src: './popout007.jpg', alt: 'Gallery image 7' },
+            { src: './popout008.jpg', alt: 'Gallery image 8' },
+            { src: './popout009.jpg', alt: 'Gallery image 9' },
+            { src: './popout010.jpg', alt: 'Gallery image 10' },
+            { src: './popout011.jpg', alt: 'Gallery image 11' },
+            { src: './popout012.jpg', alt: 'Gallery image 12' },
         ];
 
         let currentIndex = 0;
         let isFullscreen = false;
+        let isTransitioning = false;
 
         // ===== OPEN GALLERY =====
         function openGallery(index) {
-            currentIndex = index;
-            renderGallery();
+            currentIndex = index || 0;
             const overlay = document.getElementById('galleryOverlay');
+            const wrapper = document.getElementById('galleryWrapper');
+            
+            // Create initial slide
+            wrapper.innerHTML = '';
+            const slide = createSlide(galleryImages[currentIndex]);
+            slide.className = 'gallery-slide';
+            wrapper.appendChild(slide);
+            
             overlay.classList.add('active');
             document.body.style.overflow = 'hidden';
-            updateGallery();
+            document.getElementById('galleryLoading').style.display = 'none';
+        }
+
+        // ===== CREATE SLIDE ELEMENT =====
+        function createSlide(imageData) {
+            const slide = document.createElement('div');
+            slide.className = 'gallery-slide';
+            
+            const img = document.createElement('img');
+            img.src = imageData.src;
+            img.alt = imageData.alt || 'Gallery image';
+            img.draggable = false;
+            img.loading = 'lazy';
+            
+            slide.appendChild(img);
+            return slide;
         }
 
         // ===== CLOSE GALLERY =====
@@ -1380,118 +1347,171 @@ old
             const overlay = document.getElementById('galleryOverlay');
             overlay.classList.remove('active');
             document.body.style.overflow = '';
-            if (isFullscreen) {
-                toggleFullscreen();
+        }
+
+        // ===== DETERMINE DIRECTION FROM TAP POSITION =====
+        function getDirectionFromTap(event) {
+            const container = document.getElementById('galleryContainer');
+            const rect = container.getBoundingClientRect();
+            
+            let x, y;
+            if (event.touches) {
+                x = event.touches[0].clientX - rect.left;
+                y = event.touches[0].clientY - rect.top;
+            } else {
+                x = event.clientX - rect.left;
+                y = event.clientY - rect.top;
+            }
+            
+            const width = rect.width;
+            const height = rect.height;
+            
+            // Normalize to percentages
+            const px = x / width;
+            const py = y / height;
+            
+            // Determine which triangle the tap is in
+            // The X is drawn from (0,0) to (width,height) and (0,height) to (width,0)
+            const diag1 = (height / width) * x;
+            const diag2 = height - (height / width) * x;
+            
+            if (y < diag1 && y < diag2) {
+                return 'up';
+            } else if (y > diag1 && y > diag2) {
+                return 'down';
+            } else if (y < diag1 && y > diag2) {
+                return 'left';
+            } else {
+                return 'right';
             }
         }
 
-        // ===== RENDER GALLERY =====
-        function renderGallery() {
-            const track = document.getElementById('galleryTrack');
-            track.innerHTML = '';
-            
-            galleryImages.forEach((img, i) => {
-                const slide = document.createElement('div');
-                slide.className = 'gallery-slide';
-                
-                const imgElement = document.createElement('img');
-                imgElement.src = img.src;
-                imgElement.alt = img.alt || 'Gallery image';
-                imgElement.draggable = false;
-                imgElement.loading = 'lazy';
-                
-                slide.appendChild(imgElement);
-                track.appendChild(slide);
-            });
-
-            // Render dots
-            const dotsContainer = document.getElementById('galleryDots');
-            dotsContainer.innerHTML = '';
-            galleryImages.forEach((_, i) => {
-                const dot = document.createElement('div');
-                dot.className = 'gallery-dot' + (i === currentIndex ? ' active' : '');
-                dot.onclick = () => goToSlide(i);
-                dotsContainer.appendChild(dot);
-            });
+        // ===== GET OPPOSITE DIRECTION =====
+        function getOppositeDirection(direction) {
+            const opposites = {
+                'up': 'down',
+                'down': 'up',
+                'left': 'right',
+                'right': 'left'
+            };
+            return opposites[direction] || 'right';
         }
 
-        // ===== UPDATE GALLERY =====
-        function updateGallery() {
-            const track = document.getElementById('galleryTrack');
-            const slideWidth = 100;
-            track.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
-            
-            // Update counter
-            document.getElementById('galleryCounter').textContent = 
-                `${currentIndex + 1} / ${galleryImages.length}`;
-            
-            // Update dots
-            document.querySelectorAll('.gallery-dot').forEach((dot, i) => {
-                dot.classList.toggle('active', i === currentIndex);
-            });
+        // ===== GET DIRECTION CLASS =====
+        function getDirectionClass(direction, type) {
+            const classes = {
+                'up': { exit: 'exit-up', enter: 'enter-from-up' },
+                'down': { exit: 'exit-down', enter: 'enter-from-down' },
+                'left': { exit: 'exit-left', enter: 'enter-from-left' },
+                'right': { exit: 'exit-right', enter: 'enter-from-right' }
+            };
+            return classes[direction] ? classes[direction][type] : '';
         }
 
-        // ===== NAVIGATE GALLERY =====
-        function navigateGallery(direction) {
-            const newIndex = currentIndex + direction;
-            if (newIndex >= 0 && newIndex < galleryImages.length) {
-                currentIndex = newIndex;
-                updateGallery();
+        // ===== NAVIGATE BY DIRECTION =====
+        function navigateByDirection(direction) {
+            if (isTransitioning) return;
+            
+            // Determine which image to go to
+            let nextIndex;
+            if (direction === 'left' || direction === 'up') {
+                nextIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+            } else {
+                nextIndex = (currentIndex + 1) % galleryImages.length;
             }
+            
+            if (nextIndex === currentIndex) return;
+            
+            isTransitioning = true;
+            const wrapper = document.getElementById('galleryWrapper');
+            const currentSlide = wrapper.querySelector('.gallery-slide');
+            
+            // Create new slide
+            const newSlide = createSlide(galleryImages[nextIndex]);
+            const enterClass = getDirectionClass(direction, 'enter');
+            newSlide.className = `gallery-slide ${enterClass}`;
+            wrapper.appendChild(newSlide);
+            
+            // Force reflow
+            void newSlide.offsetWidth;
+            
+            // Add exit class to current
+            const exitClass = getDirectionClass(getOppositeDirection(direction), 'exit');
+            currentSlide.className = `gallery-slide exit ${exitClass}`;
+            
+            // Animate new slide in
+            newSlide.className = 'gallery-slide enter-active';
+            
+            // Wait for animation to complete
+            setTimeout(() => {
+                // Remove old slide
+                if (currentSlide.parentNode) {
+                    currentSlide.parentNode.removeChild(currentSlide);
+                }
+                // Reset new slide
+                newSlide.className = 'gallery-slide';
+                currentIndex = nextIndex;
+                isTransitioning = false;
+            }, 550);
         }
 
-        function goToSlide(index) {
-            if (index >= 0 && index < galleryImages.length) {
-                currentIndex = index;
-                updateGallery();
-            }
+        // ===== HANDLE TAP ON CONTAINER =====
+        function handleGalleryTap(event) {
+            if (isTransitioning) return;
+            
+            const direction = getDirectionFromTap(event);
+            navigateByDirection(direction);
         }
 
         // ===== TOGGLE FULLSCREEN =====
         function toggleFullscreen() {
             const overlay = document.getElementById('galleryOverlay');
             isFullscreen = !isFullscreen;
-            
-            if (isFullscreen) {
-                overlay.classList.add('is-fullscreen');
-                document.getElementById('fullscreenIcon').className = 'fas fa-compress';
-            } else {
-                overlay.classList.remove('is-fullscreen');
-                document.getElementById('fullscreenIcon').className = 'fas fa-expand';
-            }
+            overlay.classList.toggle('is-fullscreen', isFullscreen);
         }
 
         // ===== KEYBOARD CONTROLS =====
         document.addEventListener('keydown', function(e) {
             if (!document.getElementById('galleryOverlay').classList.contains('active')) return;
             
-            if (e.key === 'ArrowLeft') navigateGallery(-1);
-            if (e.key === 'ArrowRight') navigateGallery(1);
+            if (e.key === 'ArrowLeft') navigateByDirection('left');
+            if (e.key === 'ArrowRight') navigateByDirection('right');
+            if (e.key === 'ArrowUp') navigateByDirection('up');
+            if (e.key === 'ArrowDown') navigateByDirection('down');
             if (e.key === 'Escape') closeGallery();
             if (e.key === 'f' || e.key === 'F') toggleFullscreen();
         });
 
         // ===== TOUCH CONTROLS (Swipe) =====
-        const galleryContainer = document.querySelector('.gallery-container');
+        const galleryContainer = document.getElementById('galleryContainer');
         let touchStartX = 0;
         let touchStartY = 0;
+        let touchEndX = 0;
+        let touchEndY = 0;
         let isSwiping = false;
+        let swipeDirection = '';
 
         galleryContainer.addEventListener('touchstart', function(e) {
-            touchStartX = e.changedTouches[0].screenX;
-            touchStartY = e.changedTouches[0].screenY;
+            const touch = e.touches[0];
+            touchStartX = touch.clientX;
+            touchStartY = touch.clientY;
             isSwiping = true;
+            swipeDirection = '';
         }, { passive: true });
 
         galleryContainer.addEventListener('touchmove', function(e) {
             if (!isSwiping) return;
-            const touchEndX = e.changedTouches[0].screenX;
-            const touchEndY = e.changedTouches[0].screenY;
-            const diffX = touchStartX - touchEndX;
-            const diffY = touchStartY - touchEndY;
+            const touch = e.touches[0];
+            const diffX = touchStartX - touch.clientX;
+            const diffY = touchStartY - touch.clientY;
             
-            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+            if (Math.abs(diffX) > 20 || Math.abs(diffY) > 20) {
                 e.preventDefault();
+                if (Math.abs(diffX) > Math.abs(diffY)) {
+                    swipeDirection = diffX > 0 ? 'left' : 'right';
+                } else {
+                    swipeDirection = diffY > 0 ? 'up' : 'down';
+                }
             }
         }, { passive: false });
 
@@ -1499,25 +1519,37 @@ old
             if (!isSwiping) return;
             isSwiping = false;
             
-            const touchEndX = e.changedTouches[0].screenX;
-            const touchEndY = e.changedTouches[0].screenY;
+            const touchEndX = e.changedTouches[0].clientX;
+            const touchEndY = e.changedTouches[0].clientY;
             const diffX = touchStartX - touchEndX;
             const diffY = touchStartY - touchEndY;
             
-            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
-                if (diffX > 0) {
-                    navigateGallery(1);
-                } else {
-                    navigateGallery(-1);
-                }
+            if (swipeDirection && (Math.abs(diffX) > 30 || Math.abs(diffY) > 30)) {
+                navigateByDirection(swipeDirection);
+            } else {
+                // If not a clear swipe, treat as a tap
+                handleGalleryTap(e);
             }
         }, { passive: true });
 
-        // ===== CLOSE ON CLICK OUTSIDE IMAGE =====
+        // ===== CLICK HANDLER =====
+        galleryContainer.addEventListener('click', function(e) {
+            if (e.target.closest('.gallery-close')) return;
+            handleGalleryTap(e);
+        });
+
+        // ===== CLOSE ON CLICK OUTSIDE =====
         document.getElementById('galleryOverlay').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeGallery();
             }
+        });
+
+        // ===== DOUBLE TAP FOR FULLSCREEN =====
+        let lastTap = 0;
+        galleryContainer.addEventListener('dblclick', function(e) {
+            e.preventDefault();
+            toggleFullscreen();
         });
 
         // ===== WHATSAPP FORM HANDLER =====
@@ -1545,9 +1577,10 @@ old
         }
 
         console.log('✅ Gallery loaded with ' + galleryImages.length + ' images');
-        console.log('📸 Click any image to open the gallery');
-        console.log('🔄 Swipe left/right or use arrow buttons to navigate');
-        console.log('🖥️ Press F for fullscreen, ESC to close');
+        console.log('🔽 Tap different areas of the image to navigate');
+        console.log('⬆️ Top = wipe up, Bottom = wipe down');
+        console.log('⬅️ Left = wipe left, Right = wipe right');
+        console.log('🔄 Swipe to navigate, double-tap for fullscreen');
     </script>
 
 </body>
