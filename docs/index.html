@@ -1,35 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Boat Lane Paddock – Family Friendly Bell Tent Campsite</title>
+    <meta name="theme-color" content="#faf8f5" />
+    <title>Exclusive Group Glamping in Worcestershire | Boat Lane Paddock</title>
 
     <!-- ===== PRIMARY META TAGS ===== -->
-    <meta name="description" content="Book the entire glamping site exclusively for your group of 20+. Luxury bell tents, wood-fired hot tub, firepits & riverside location. Perfect for teams, families & celebrations." />
+    <meta name="description" content="Exclusive group glamping in Worcestershire for 20+ guests: bell tents, a wood-fired hot tub, firepits and riverside stays for teams, families and celebrations." />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://boatlaneglamping.co.uk/" />
 
     <!-- ===== OPEN GRAPH (for social sharing) ===== -->
-    <meta property="og:title" content="Exclusive Glamping Site Hire Worcestershire | Boat Lane Paddock" />
-    <meta property="og:description" content="Book the entire glamping site exclusively for your group of 20+. Luxury bell tents, wood-fired hot tub, firepits & riverside location." />
+    <meta property="og:title" content="Exclusive Group Glamping in Worcestershire | Boat Lane Paddock" />
+    <meta property="og:description" content="Exclusive group glamping in Worcestershire for 20+ guests: bell tents, a wood-fired hot tub, firepits and riverside stays for teams, families and celebrations." />
     <meta property="og:image" content="https://boatlaneglamping.co.uk/hero.jpg" />
     <meta property="og:url" content="https://boatlaneglamping.co.uk/" />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_GB" />
     <meta property="og:site_name" content="Boat Lane Paddock" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content="1843" />
+    <meta property="og:image:height" content="1021" />
     <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:alt" content="Boat Lane Paddock at night" />
 
     <!-- ===== TWITTER CARDS (optional - works without a Twitter account) ===== -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Exclusive Glamping Site Hire Worcestershire | Boat Lane Paddock" />
-    <meta name="twitter:description" content="Book the entire glamping site exclusively for your group of 20+. Luxury bell tents, wood-fired hot tub, firepits & riverside location." />
+    <meta name="twitter:title" content="Exclusive Group Glamping in Worcestershire | Boat Lane Paddock" />
+    <meta name="twitter:description" content="Exclusive group glamping in Worcestershire for 20+ guests: bell tents, a wood-fired hot tub, firepits and riverside stays for teams, families and celebrations." />
     <meta name="twitter:image" content="https://boatlaneglamping.co.uk/hero.jpg" />
+    <meta name="twitter:image:alt" content="Boat Lane Paddock at night" />
 
+    <link rel="preload" as="image" href="/hero.jpg" fetchpriority="high" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <style>
@@ -56,7 +61,7 @@
         h1,
         h2,
         h3 {
-            font-family: 'Playfair Display', serif;
+            font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
             font-weight: 600;
             letter-spacing: -0.01em;
         }
@@ -141,7 +146,7 @@
             gap: 12px;
         }
         .logo {
-            font-family: 'Playfair Display', serif;
+            font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
             font-size: 1.4rem;
             font-weight: 700;
             color: #1f3b2c;
@@ -412,6 +417,21 @@
             background: #3a5f4a;
             color: #d4e0d4;
         }
+        .seo-page-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 1.5rem;
+            color: #1f3b2c;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .seo-page-link:hover {
+            text-decoration: underline;
+        }
+        .section-dark .seo-page-link {
+            color: #b8d0b8;
+        }
 
         /* ===== CLICKABLE IMAGE STYLES ===== */
         .clickable-image {
@@ -676,6 +696,168 @@
             }
         }
 
+        /* ===== COLOUR THEME SWITCHER ===== */
+        body,
+        header,
+        .section-light,
+        .section-dark,
+        .feature-card,
+        .pill,
+        .dog-note,
+        .form-group input,
+        .form-group textarea,
+        .form-group select,
+        footer {
+            transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+        }
+        .theme-toggle {
+            appearance: none;
+            border: 1px solid rgba(31, 59, 44, 0.18);
+            background: #f6f4f0;
+            color: #1f3b2c;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 38px;
+            padding: 4px 10px 4px 5px;
+            font: inherit;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.2s ease;
+        }
+        .theme-toggle:hover {
+            transform: translateY(-1px);
+        }
+        .theme-toggle:focus-visible {
+            outline: 3px solid rgba(31, 59, 44, 0.35);
+            outline-offset: 3px;
+        }
+        .theme-toggle-track {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #1f3b2c;
+            color: #ffffff;
+            display: grid;
+            place-items: center;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .theme-toggle[aria-pressed="true"] {
+            background: #0d1c13;
+            border-color: rgba(184, 208, 184, 0.28);
+            color: #e8f1e8;
+        }
+        .theme-toggle[aria-pressed="true"] .theme-toggle-track {
+            background: #3a5f4a;
+            transform: translateX(4px);
+        }
+        body.theme-night {
+            background: #08130d;
+            color: #e8f1e8;
+        }
+        body.theme-night header {
+            background: rgba(8, 19, 13, 0.9);
+            border-color: rgba(184, 208, 184, 0.12);
+        }
+        body.theme-night .logo,
+        body.theme-night .nav-links a:hover,
+        body.theme-night footer a,
+        body.theme-night .hero-badges i,
+        body.theme-night .feature-card i {
+            color: #b8d0b8;
+        }
+        body.theme-night .logo span,
+        body.theme-night .nav-links a,
+        body.theme-night .subtitle,
+        body.theme-night .hero-badges,
+        body.theme-night .feature-card p,
+        body.theme-night footer {
+            color: #c4d0c4;
+        }
+        body.theme-night .section-light {
+            background: #0d1c13;
+        }
+        /* Keep the site's established green banners unchanged in night mode. */
+        body.theme-night .section-dark {
+            background: #1f3b2c;
+            color: #faf8f5;
+        }
+        body.theme-night .section-dark .subtitle,
+        body.theme-night .section-dark .feature-card p,
+        body.theme-night .section-dark .dog-note {
+            color: #d4e0d4;
+        }
+        body.theme-night .section-dark .section-tag {
+            color: #aabcaa;
+        }
+        body.theme-night .feature-card,
+        body.theme-night .pill,
+        body.theme-night .dog-note {
+            background: #13261a;
+            color: #e8f1e8;
+        }
+        body.theme-night .section-dark .feature-card,
+        body.theme-night .section-dark .pill,
+        body.theme-night .section-dark .dog-note {
+            background: #2a4f3a;
+        }
+        body.theme-night .section-dark .pill:hover {
+            background: #4a6f5a;
+        }
+        body.theme-night .btn-primary,
+        body.theme-night .price-badge {
+            background: #3a5f4a;
+            box-shadow: 0 4px 14px rgba(58, 95, 74, 0.35);
+        }
+        body.theme-night .btn-primary:hover {
+            background: #4a6f5a;
+            box-shadow: 0 8px 28px rgba(58, 95, 74, 0.45);
+        }
+        body.theme-night .price-badge span {
+            color: #c4d0c4;
+        }
+        body.theme-night .form-group input,
+        body.theme-night .form-group textarea,
+        body.theme-night .form-group select {
+            background: #13261a;
+            border-color: #4a6f5a;
+            color: #e8f1e8;
+        }
+        body.theme-night .form-group input:focus,
+        body.theme-night .form-group textarea:focus {
+            border-color: #b8d0b8;
+        }
+        body.theme-night footer {
+            border-color: rgba(184, 208, 184, 0.12);
+        }
+        body.theme-night [style*="color:#4a4a47"],
+        body.theme-night [style*="color:#6a6a67"] {
+            color: #c4d0c4 !important;
+        }
+        body.theme-night [style*="color:#1f3b2c"] {
+            color: #b8d0b8 !important;
+        }
+        body.theme-night [style*="background:#f6f4f0"] {
+            background: #13261a !important;
+        }
+        body.theme-night [style*="background:#f0ede8"] {
+            background: #13261a !important;
+        }
+        body.theme-night [style*="color:#c4d0c4"],
+        body.theme-night [style*="color:#aabcaa"] {
+            color: #c4d0c4 !important;
+        }
+        body.theme-night [style*="color:#b8d0b8"] {
+            color: #b8d0b8 !important;
+        }
+        @media (max-width: 700px) {
+            .theme-toggle {
+                min-height: 36px;
+            }
+        }
+
         @keyframes fadeUp {
             to {
                 opacity: 1;
@@ -689,6 +871,7 @@
     {
       "@context": "https://schema.org",
       "@type": "LodgingBusiness",
+      "@id": "https://boatlaneglamping.co.uk/#business",
       "name": "Boat Lane Paddock",
       "description": "Exclusive glamping site hire in Worcestershire. Luxury bell tents, wood-fired hot tub, and group accommodation for 20+ guests.",
       "url": "https://boatlaneglamping.co.uk/",
@@ -697,13 +880,8 @@
       "priceRange": "£99 per bell tent per night",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Worcestershire",
-        "addressCountry": "UK"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "52.1000",
-        "longitude": "-1.9500"
+        "addressRegion": "Worcestershire",
+        "addressCountry": "GB"
       },
       "image": "https://boatlaneglamping.co.uk/hero.jpg",
       "amenityFeature": [
@@ -727,12 +905,18 @@
           "name": "Riverside Location",
           "value": "2-minute walk to river for paddleboarding"
         }
-      ],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "reviewCount": "12"
-      }
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://boatlaneglamping.co.uk/#website",
+      "url": "https://boatlaneglamping.co.uk/",
+      "name": "Boat Lane Paddock",
+      "inLanguage": "en-GB"
     }
     </script>
 
@@ -780,6 +964,10 @@
                 <a href="#" onclick="openGallery(0); return false;" style="cursor:pointer;">
                     <i class="fas fa-images" style="margin-right:4px;"></i> Gallery
                 </a>
+                <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" aria-label="Switch to night colour palette">
+                    <span class="theme-toggle-track" aria-hidden="true"><i class="fas fa-sun"></i></span>
+                    <span class="theme-toggle-label">Meadow</span>
+                </button>
                 <a href="#contact" class="btn btn-primary" style="padding:10px 24px; font-size:0.85rem; color:#ffffff !important;">Enquire</a>
             </div>
         </div>
@@ -805,7 +993,7 @@
                     <i class="fab fa-whatsapp"></i> Message Jonno
                 </a>
             </div>
-            <img src="./hero.jpg" alt="Boat Lane Paddock at night" class="hero-image clickable-image" onclick="openGallery(0)" />
+            <img src="./hero.jpg" alt="Boat Lane Paddock at night" class="hero-image clickable-image" onclick="openGallery(0)" width="1843" height="1021" fetchpriority="high" decoding="async" />
         </div>
     </section>
 
@@ -836,9 +1024,10 @@
             </div>
             
             <div class="image-grid-2">
-                <img src="./paddock.jpg" alt="Wood-fired hot tub under the stars" class="clickable-image" onclick="openGallery(1)" />
-                <img src="./interior.jpg" alt="Luxury bell tent interior with cosy bedding" class="clickable-image" onclick="openGallery(2)" />
+                <img src="./paddock.jpg" alt="Wood-fired hot tub under the stars" class="clickable-image" onclick="openGallery(10)" width="1011" height="1392" loading="lazy" decoding="async" />
+                <img src="./interior.jpg" alt="Luxury bell tent interior with cosy bedding" class="clickable-image" onclick="openGallery(11)" width="965" height="1401" loading="lazy" decoding="async" />
             </div>
+            <a class="seo-page-link" href="/group-glamping/">Explore exclusive group glamping <span aria-hidden="true">→</span></a>
         </div>
     </section>
 
@@ -867,6 +1056,7 @@
                     <p>Easy from Worcester, Stratford‑upon‑Avon, Cheltenham, and Redditch. Leave the office at 5pm, be around the fire by 5:45pm.</p>
                 </div>
             </div>
+            <a class="seo-page-link" href="/team-retreats/">Explore team retreats <span aria-hidden="true">→</span></a>
         </div>
     </section>
 
@@ -934,7 +1124,7 @@
             
             <!-- Soundfulness Image -->
             <div style="margin-top:1.5rem; border-radius:20px; overflow:hidden; box-shadow:0 8px 28px rgba(0,0,0,0.08);">
-                <img src="./soundfulness.jpg" alt="Soundfulness sound bath experience" style="width:100%; max-height:400px; object-fit:cover; display:block;" />
+                <img src="./soundfulness.JPG" alt="Soundfulness sound bath experience" class="clickable-image" onclick="openGallery(12)" width="1816" height="1358" loading="lazy" decoding="async" style="width:100%; max-height:400px; object-fit:cover; display:block;" />
             </div>
             
             <div class="grid-3" style="margin-top:2.5rem;">
@@ -967,6 +1157,7 @@
                     Learn More About Soundfulness <i class="fas fa-arrow-right" style="margin-left:8px;"></i>
                 </a>
             </div>
+            <a class="seo-page-link" href="/soundfulness/">Explore Soundfulness retreats <span aria-hidden="true">→</span></a>
         </div>
     </section>
 
@@ -981,8 +1172,8 @@
 
             <!-- Double Image Bar -->
             <div class="image-grid-2" style="margin-top:1.5rem;">
-                <img src="./addons-river.jpg" alt="Riverside pub and paddleboarding" class="clickable-image" style="border-radius:20px; width:100%; height:260px; object-fit:cover; box-shadow:0 8px 28px rgba(0,0,0,0.15);" />
-                <img src="./addons-petanque.jpg" alt="Pétanque and outdoor activities" class="clickable-image" style="border-radius:20px; width:100%; height:260px; object-fit:cover; box-shadow:0 8px 28px rgba(0,0,0,0.15);" />
+                <img src="./addons-river.JPG" alt="Riverside pub and paddleboarding" class="clickable-image" onclick="openGallery(7)" width="858" height="880" loading="lazy" decoding="async" style="border-radius:20px; width:100%; height:260px; object-fit:cover; box-shadow:0 8px 28px rgba(0,0,0,0.15);" />
+                <img src="./addons-petanque.JPG" alt="Pétanque and outdoor activities" class="clickable-image" onclick="openGallery(8)" width="1600" height="1200" loading="lazy" decoding="async" style="border-radius:20px; width:100%; height:260px; object-fit:cover; box-shadow:0 8px 28px rgba(0,0,0,0.15);" />
             </div>
 
             <h3 style="margin-top:2.5rem; font-family:'Inter',sans-serif; font-weight:600; font-size:1.2rem; color:#c4d0c4;">
@@ -1100,7 +1291,7 @@
                 🐾 You're sure to make friends with our very friendly fox red Labrador, <strong>Acer</strong> 
                 <span style="font-weight:400;">(who we can happily keep out of your way if you prefer!)</span>
             </div>
-            <img src="./family.jpg" alt="Jonno and family on the river" class="circle-image clickable-image" onclick="openGallery(3)" />
+            <img src="./family.jpg" alt="Jonno and family on the river" class="circle-image clickable-image" onclick="openGallery(9)" width="865" height="617" loading="lazy" decoding="async" />
         </div>
     </section>
     
@@ -1293,20 +1484,40 @@
 
     <!-- ===== JAVASCRIPT ===== -->
     <script>
+        // ===== COLOUR THEME SWITCHER =====
+        const themeToggle = document.getElementById('themeToggle');
+
+        function setTheme(theme) {
+            const isNight = theme === 'night';
+            document.body.classList.toggle('theme-night', isNight);
+            themeToggle.setAttribute('aria-pressed', String(isNight));
+            themeToggle.setAttribute('aria-label', isNight ? 'Switch to meadow colour palette' : 'Switch to night colour palette');
+            themeToggle.querySelector('.theme-toggle-label').textContent = isNight ? 'Night' : 'Meadow';
+            themeToggle.querySelector('.theme-toggle-track i').className = isNight ? 'fas fa-moon' : 'fas fa-sun';
+            localStorage.setItem('boatLaneTheme', isNight ? 'night' : 'meadow');
+        }
+
+        const savedTheme = localStorage.getItem('boatLaneTheme');
+        if (savedTheme === 'night') setTheme('night');
+        themeToggle.addEventListener('click', () => {
+            setTheme(document.body.classList.contains('theme-night') ? 'meadow' : 'night');
+        });
+
         // ===== MINIMALIST DIRECTIONAL GALLERY =====
         const galleryImages = [
-            { src: './popout001.jpg', alt: 'Gallery image 1' },
-            { src: './popout002.jpg', alt: 'Gallery image 2' },
-            { src: './popout003.jpg', alt: 'Gallery image 3' },
-            { src: './popout004.jpg', alt: 'Gallery image 4' },
-            { src: './popout005.jpg', alt: 'Gallery image 5' },
-            { src: './popout006.jpg', alt: 'Gallery image 6' },
-            { src: './popout007.jpg', alt: 'Gallery image 7' },
-            { src: './popout008.jpg', alt: 'Gallery image 8' },
-            { src: './popout009.jpg', alt: 'Gallery image 9' },
-            { src: './popout010.jpg', alt: 'Gallery image 10' },
-            { src: './popout011.jpg', alt: 'Gallery image 11' },
-            { src: './popout012.jpg', alt: 'Gallery image 12' },
+            { src: './popout001.JPG', alt: 'Gallery image 1' },
+            { src: './popout002.JPG', alt: 'Gallery image 2' },
+            { src: './popout003.JPG', alt: 'Gallery image 3' },
+            { src: './popout004.JPG', alt: 'Gallery image 4' },
+            { src: './popout005.JPG', alt: 'Gallery image 5' },
+            { src: './popout006.JPG', alt: 'Gallery image 6' },
+            { src: './popout007.JPG', alt: 'Gallery image 7' },
+            { src: './popout008.JPG', alt: 'Gallery image 8' },
+            { src: './popout009.JPG', alt: 'Gallery image 9' },
+            { src: './popout010.JPG', alt: 'Gallery image 10' },
+            { src: './popout011.JPG', alt: 'Gallery image 11' },
+            { src: './popout012.JPG', alt: 'Gallery image 12' },
+            { src: './soundfulness.JPG', alt: 'Soundfulness sound bath experience' },
         ];
 
         let currentIndex = 0;
