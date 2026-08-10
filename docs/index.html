@@ -332,6 +332,7 @@
         .circle-image {
             border-radius: 999px;
             width: 100%;
+            height: auto;
             max-width: 320px;
             margin: 1.5rem auto 0;
             display: block;
@@ -708,7 +709,62 @@
         .form-group textarea,
         .form-group select,
         footer {
-            transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+            transition: background 1.8s cubic-bezier(0.22, 1, 0.36, 1), background-color 1.8s cubic-bezier(0.22, 1, 0.36, 1), color 1.8s cubic-bezier(0.22, 1, 0.36, 1), border-color 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        body:not(.theme-night) {
+            background: linear-gradient(180deg, #f6fbff 0%, #fbfcfa 48%, #f6fbf4 100%);
+        }
+        body:not(.theme-night) header {
+            background: rgba(248, 252, 255, 0.9);
+        }
+        body:not(.theme-night) .section-light {
+            background: transparent;
+        }
+        body:not(.theme-night) .feature-card {
+            background: rgba(248, 252, 248, 0.88);
+        }
+        body::before {
+            --star-opacity: 0.1;
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 1100;
+            pointer-events: none;
+            opacity: var(--star-opacity);
+            mix-blend-mode: soft-light;
+            background:
+                radial-gradient(circle at 7% 8%, #ffffff 0 1px, transparent 1.7px),
+                radial-gradient(circle at 14% 21%, #d8efff 0 0.8px, transparent 1.5px),
+                radial-gradient(circle at 22% 6%, #ffffff 0 1px, transparent 1.7px),
+                radial-gradient(circle at 31% 29%, #dff2df 0 0.8px, transparent 1.4px),
+                radial-gradient(circle at 39% 13%, #ffffff 0 1.1px, transparent 1.8px),
+                radial-gradient(circle at 46% 37%, #d8efff 0 0.8px, transparent 1.5px),
+                radial-gradient(circle at 54% 9%, #ffffff 0 0.9px, transparent 1.6px),
+                radial-gradient(circle at 63% 24%, #e1f2df 0 1px, transparent 1.7px),
+                radial-gradient(circle at 71% 5%, #ffffff 0 0.8px, transparent 1.5px),
+                radial-gradient(circle at 78% 34%, #d8efff 0 1px, transparent 1.7px),
+                radial-gradient(circle at 86% 17%, #ffffff 0 0.8px, transparent 1.5px),
+                radial-gradient(circle at 94% 42%, #e1f2df 0 1px, transparent 1.7px),
+                radial-gradient(circle at 11% 63%, #ffffff 0 0.8px, transparent 1.5px),
+                radial-gradient(circle at 28% 72%, #d8efff 0 1px, transparent 1.7px),
+                radial-gradient(circle at 48% 58%, #ffffff 0 0.8px, transparent 1.5px),
+                radial-gradient(circle at 67% 76%, #e1f2df 0 1px, transparent 1.7px),
+                radial-gradient(circle at 83% 65%, #ffffff 0 0.8px, transparent 1.5px),
+                radial-gradient(circle at 96% 88%, #d8efff 0 1px, transparent 1.7px);
+            transform: translate3d(0, -42px, 0);
+            animation: star-settle 4.8s cubic-bezier(0.16, 1, 0.3, 1) forwards, star-shimmer 10s ease-in-out 4.8s infinite;
+        }
+        body.theme-night::before {
+            --star-opacity: 0.24;
+        }
+        @keyframes star-settle {
+            0% { opacity: 0; filter: blur(1.5px); transform: translate3d(0, -42px, 0); }
+            72% { opacity: var(--star-opacity); filter: blur(0); transform: translate3d(0, 3px, 0); }
+            100% { opacity: var(--star-opacity); filter: blur(0); transform: translate3d(0, 0, 0); }
+        }
+        @keyframes star-shimmer {
+            0%, 100% { filter: brightness(0.94); }
+            50% { filter: brightness(1.16); }
         }
         .theme-toggle {
             appearance: none;
@@ -725,7 +781,7 @@
             font-size: 0.82rem;
             font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.2s ease;
+            transition: background-color 1.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 1.4s cubic-bezier(0.22, 1, 0.36, 1), color 1.4s cubic-bezier(0.22, 1, 0.36, 1), transform 0.25s ease;
         }
         .theme-toggle:hover {
             transform: translateY(-1px);
@@ -742,7 +798,7 @@
             color: #ffffff;
             display: grid;
             place-items: center;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1), background-color 1.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
         .theme-toggle[aria-pressed="true"] {
             background: #0d1c13;
@@ -855,6 +911,27 @@
         @media (max-width: 700px) {
             .theme-toggle {
                 min-height: 36px;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            body::before {
+                animation: none;
+                transform: none;
+            }
+            body,
+            header,
+            .section-light,
+            .section-dark,
+            .feature-card,
+            .pill,
+            .dog-note,
+            .form-group input,
+            .form-group textarea,
+            .form-group select,
+            footer,
+            .theme-toggle,
+            .theme-toggle-track {
+                transition-duration: 0.01ms;
             }
         }
 
