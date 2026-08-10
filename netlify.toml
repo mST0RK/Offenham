@@ -1,9 +1,0 @@
-# Netlify configuration
-# This is a static HTML site (no build step). The site files live in the
-# "boat lane paddock" folder, so we point Netlify's publish directory there.
-[build]
-  # Build from the repository root. Setting this explicitly overrides any
-  # stale "base directory" left over in the site's UI settings, which was
-  # pointing at a folder that does not exist and failing config parsing.
-  base = "."
-  publish = "boat lane paddock"
