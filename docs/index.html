@@ -177,7 +177,7 @@
         }
         /* Keep in-page navigation targets clear of the sticky header. */
         section[id] {
-            scroll-margin-top: 10rem;
+            scroll-margin-top: calc(10rem - clamp(1rem, 1.4vw, 1.2rem));
         }
         .section-light {
             background: #ffffff;
@@ -859,7 +859,7 @@
         }
         @media (max-width: 700px) {
             section[id] {
-                scroll-margin-top: 14rem;
+                scroll-margin-top: calc(14rem - clamp(1rem, 1.4vw, 1.2rem));
             }
             .theme-toggle {
                 min-height: 36px;
