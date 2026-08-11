@@ -1635,7 +1635,7 @@
         </div>
 
         <!-- Subtle hint for first-time users -->
-        <div class="gallery-hint">Tap to navigate</div>
+        <div class="gallery-hint">Tap top or bottom, or swipe vertically</div>
     </div>
 
     <!-- ===== JAVASCRIPT ===== -->
@@ -1770,102 +1770,62 @@
         function getDirectionFromTap(event) {
             const container = document.getElementById('galleryContainer');
             const rect = container.getBoundingClientRect();
-            
-            let x, y;
-            if (event.touches) {
-                x = event.touches[0].clientX - rect.left;
-                y = event.touches[0].clientY - rect.top;
-            } else {
-                x = event.clientX - rect.left;
-                y = event.clientY - rect.top;
-            }
-            
-            const width = rect.width;
-            const height = rect.height;
-            
-            // Normalize to percentages
-            const px = x / width;
-            const py = y / height;
-            
-            // Determine which triangle the tap is in
-            // The X is drawn from (0,0) to (width,height) and (0,height) to (width,0)
-            const diag1 = (height / width) * x;
-            const diag2 = height - (height / width) * x;
-            
-            if (y < diag1 && y < diag2) {
-                return 'up';
-            } else if (y > diag1 && y > diag2) {
-                return 'down';
-            } else if (y < diag1 && y > diag2) {
-                return 'left';
-            } else {
-                return 'right';
-            }
+            const point = (event.touches && event.touches[0]) ||
+                (event.changedTouches && event.changedTouches[0]) || event;
+            const y = point.clientY - rect.top;
+
+            // Vertical-only navigation: the upper half moves to the previous image;
+            // the lower half moves to the next image.
+            return y < rect.height / 2 ? 'up' : 'down';
         }
 
         // ===== GET OPPOSITE DIRECTION =====
+        
+// ===== GET OPPOSITE DIRECTION =====
         function getOppositeDirection(direction) {
-            const opposites = {
-                'up': 'down',
-                'down': 'up',
-                'left': 'right',
-                'right': 'left'
-            };
-            return opposites[direction] || 'right';
+            return direction === 'up' ? 'down' : 'up';
         }
 
-        // ===== GET DIRECTION CLASS (INVERTED UP/DOWN) =====
+        // ===== GET DIRECTION CLASS (VERTICAL ONLY) =====
         function getDirectionClass(direction, type) {
             const classes = {
                 'up': { exit: 'exit-down', enter: 'enter-from-down' },
-                'down': { exit: 'exit-up', enter: 'enter-from-up' },
-                'left': { exit: 'exit-left', enter: 'enter-from-left' },
-                'right': { exit: 'exit-right', enter: 'enter-from-right' }
+                'down': { exit: 'exit-up', enter: 'enter-from-up' }
             };
             return classes[direction] ? classes[direction][type] : '';
         }
 
         // ===== NAVIGATE BY DIRECTION =====
+        
+// ===== NAVIGATE BY DIRECTION =====
         function navigateByDirection(direction) {
-            if (isTransitioning) return;
-            
-            // Determine which image to go to
-            let nextIndex;
-            if (direction === 'left' || direction === 'up') {
-                nextIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-            } else {
-                nextIndex = (currentIndex + 1) % galleryImages.length;
-            }
-            
+            if (isTransitioning || (direction !== 'up' && direction !== 'down')) return;
+
+            const nextIndex = direction === 'up'
+                ? (currentIndex - 1 + galleryImages.length) % galleryImages.length
+                : (currentIndex + 1) % galleryImages.length;
+
             if (nextIndex === currentIndex) return;
-            
+
             isTransitioning = true;
             const wrapper = document.getElementById('galleryWrapper');
             const currentSlide = wrapper.querySelector('.gallery-slide');
-            
-            // Create new slide
+
             const newSlide = createSlide(galleryImages[nextIndex]);
             const enterClass = getDirectionClass(direction, 'enter');
             newSlide.className = `gallery-slide ${enterClass}`;
             wrapper.appendChild(newSlide);
-            
-            // Force reflow
+
             void newSlide.offsetWidth;
-            
-            // Add exit class to current
+
             const exitClass = getDirectionClass(getOppositeDirection(direction), 'exit');
             currentSlide.className = `gallery-slide exit ${exitClass}`;
-            
-            // Animate new slide in
             newSlide.className = 'gallery-slide enter-active';
-            
-            // Wait for animation to complete
+
             setTimeout(() => {
-                // Remove old slide
                 if (currentSlide.parentNode) {
                     currentSlide.parentNode.removeChild(currentSlide);
                 }
-                // Reset new slide
                 newSlide.className = 'gallery-slide';
                 currentIndex = nextIndex;
                 isTransitioning = false;
@@ -1873,14 +1833,16 @@
         }
 
         // ===== HANDLE TAP ON CONTAINER =====
+        
+// ===== HANDLE TAP ON CONTAINER =====
         function handleGalleryTap(event) {
             if (isTransitioning) return;
-            
-            const direction = getDirectionFromTap(event);
-            navigateByDirection(direction);
+            navigateByDirection(getDirectionFromTap(event));
         }
 
         // ===== TOGGLE FULLSCREEN =====
+        
+// ===== TOGGLE FULLSCREEN =====
         function toggleFullscreen() {
             const overlay = document.getElementById('galleryOverlay');
             isFullscreen = !isFullscreen;
@@ -1891,8 +1853,6 @@
         document.addEventListener('keydown', function(e) {
             if (!document.getElementById('galleryOverlay').classList.contains('active')) return;
             
-            if (e.key === 'ArrowLeft') navigateByDirection('left');
-            if (e.key === 'ArrowRight') navigateByDirection('right');
             if (e.key === 'ArrowUp') navigateByDirection('up');
             if (e.key === 'ArrowDown') navigateByDirection('down');
             if (e.key === 'Escape') closeGallery();
@@ -1921,35 +1881,36 @@
             const touch = e.touches[0];
             const diffX = touchStartX - touch.clientX;
             const diffY = touchStartY - touch.clientY;
-            
-            if (Math.abs(diffX) > 20 || Math.abs(diffY) > 20) {
+
+            // Only vertical movement is a navigation gesture. Horizontal movement
+            // is intentionally ignored.
+            if (Math.abs(diffY) > 20 && Math.abs(diffY) >= Math.abs(diffX)) {
                 e.preventDefault();
-                if (Math.abs(diffX) > Math.abs(diffY)) {
-                    swipeDirection = diffX > 0 ? 'left' : 'right';
-                } else {
-                    swipeDirection = diffY > 0 ? 'up' : 'down';
-                }
+                swipeDirection = diffY > 0 ? 'up' : 'down';
+            } else {
+                swipeDirection = '';
             }
         }, { passive: false });
 
         galleryContainer.addEventListener('touchend', function(e) {
             if (!isSwiping) return;
             isSwiping = false;
-            
-            const touchEndX = e.changedTouches[0].clientX;
-            const touchEndY = e.changedTouches[0].clientY;
-            const diffX = touchStartX - touchEndX;
-            const diffY = touchStartY - touchEndY;
-            
-            if (swipeDirection && (Math.abs(diffX) > 30 || Math.abs(diffY) > 30)) {
+
+            const touch = e.changedTouches[0];
+            const diffY = touchStartY - touch.clientY;
+
+            // Do not fall through to tap handling here. A touchend event does not
+            // expose clientX/clientY directly, so doing so could create a phantom
+            // horizontal navigation. Taps are handled by the click listener.
+            if (swipeDirection && Math.abs(diffY) > 30) {
                 navigateByDirection(swipeDirection);
-            } else {
-                // If not a clear swipe, treat as a tap
-                handleGalleryTap(e);
             }
+            swipeDirection = '';
         }, { passive: true });
 
         // ===== CLICK HANDLER =====
+        
+// ===== CLICK HANDLER =====
         galleryContainer.addEventListener('click', function(e) {
             if (e.target.closest('.gallery-close')) return;
             handleGalleryTap(e);
@@ -1994,10 +1955,10 @@
         }
 
         console.log('✅ Gallery loaded with ' + galleryImages.length + ' images');
-        console.log('🔽 Tap different areas of the image to navigate');
-        console.log('⬆️ Top = wipe up, Bottom = wipe down');
-        console.log('⬅️ Left = wipe left, Right = wipe right');
-        console.log('🔄 Swipe to navigate, double-tap for fullscreen');
+        console.log('🔽 Tap the top or bottom of the image, or swipe vertically');
+        console.log('⬆️ Up = previous image, ⬇️ Down = next image');
+        console.log('↔️ Horizontal movement is ignored');
+        console.log('🔄 Double-tap for fullscreen');
     </script>
 
 </body>
