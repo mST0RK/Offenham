@@ -177,7 +177,7 @@
         }
         /* Keep in-page navigation targets clear of the sticky header. */
         section[id] {
-            scroll-margin-top: calc(10rem - clamp(1rem, 1.4vw, 1.2rem));
+            scroll-margin-top: var(--section-anchor-offset, 2rem);
         }
         .section-light {
             background: #ffffff;
@@ -858,9 +858,6 @@
             color: #b8d0b8 !important;
         }
         @media (max-width: 700px) {
-            section[id] {
-                scroll-margin-top: calc(14rem - clamp(1rem, 1.4vw, 1.2rem));
-            }
             .theme-toggle {
                 min-height: 36px;
             }
@@ -1491,6 +1488,25 @@
 
     <!-- ===== JAVASCRIPT ===== -->
     <script>
+        // Keep anchor targets clear of the sticky header at every responsive height.
+        const stickyHeader = document.querySelector('header');
+        const firstAnchoredSection = document.querySelector('section[id]');
+
+        function updateSectionAnchorOffset() {
+            if (!stickyHeader || !firstAnchoredSection) return;
+
+            const sectionPadding = parseFloat(getComputedStyle(firstAnchoredSection).paddingTop) || 0;
+            const breathingRoom = 16;
+            const offset = Math.max(0, stickyHeader.getBoundingClientRect().height - sectionPadding + breathingRoom);
+            document.documentElement.style.setProperty('--section-anchor-offset', `${offset}px`);
+        }
+
+        updateSectionAnchorOffset();
+        window.addEventListener('resize', updateSectionAnchorOffset);
+        if ('ResizeObserver' in window && stickyHeader) {
+            new ResizeObserver(updateSectionAnchorOffset).observe(stickyHeader);
+        }
+
         // ===== COLOUR THEME SWITCHER =====
         const themeToggle = document.getElementById('themeToggle');
 
