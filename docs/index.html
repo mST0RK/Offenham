@@ -358,6 +358,15 @@
             margin: 1rem 0 0.5rem;
             box-shadow: 0 4px 14px rgba(31, 59, 44, 0.15);
         }
+        .price-badge-link {
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+        .price-badge-link:hover {
+            background: #2a4f3a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(31, 59, 44, 0.22);
+        }
         .price-badge span {
             font-weight: 400;
             font-size: 0.9rem;
@@ -1091,6 +1100,7 @@
             <a href="#" class="logo">Boat Lane <span>Paddock</span></a>
             <div class="nav-links">
                 <a href="#paddock">The Paddock</a>
+                <a href="/pricing/">Pricing</a>
                 <a href="#teams">For Teams</a>
                 <a href="#wellbeing">Wellbeing</a>
                 <a href="#soundfulness">Soundfulness</a>
@@ -1138,9 +1148,9 @@
             <span class="section-tag">✦ The space</span>
             <h2>Your Private Village:<br /> Glamping + Pitches for tents and campervans</h2>
             
-            <div class="price-badge">
-                £99 <span>per bell tent per night</span>
-            </div>
+            <a class="price-badge price-badge-link" href="/pricing/">
+                From £350 <span>per bell tent · two nights off-season <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
             <p style="max-width:680px; font-size:1.1rem; color:#4a4a47; margin-top:0.25rem;">
                 Our flexible site layout is custom-built to host big gatherings comfortably, combining luxury glamping setups with plenty of space for extra guests.
             </p>
