@@ -8,7 +8,7 @@
 
     <!-- ===== PRIMARY META TAGS ===== -->
     <meta name="description" content="Exclusive group glamping in Worcestershire for 20+ guests: bell tents, a wood-fired hot tub, firepits and riverside stays for teams, families and celebrations." />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="noindex, nofollow" />
     <link rel="canonical" href="https://boatlaneglamping.co.uk/" />
 
     <!-- ===== OPEN GRAPH (for social sharing) ===== -->
@@ -927,6 +927,59 @@
                 transform: translateY(0);
             }
         }
+    
+        /* ===== PRIVATE PREVIEW GATE ===== */
+        #previewGate {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: #1f3b2c;
+            color: #faf8f5;
+        }
+        .preview-gate-card {
+            width: min(100%, 420px);
+            padding: 36px 30px;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            border-radius: 20px;
+            background: #2a4f3a;
+            box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
+            text-align: center;
+        }
+        .preview-gate-card h1 {
+            margin-bottom: 0.65rem;
+            font-size: clamp(2rem, 7vw, 2.8rem);
+        }
+        .preview-gate-card p {
+            margin-bottom: 1.5rem;
+            color: #d4e0d4;
+        }
+        .preview-gate-card input {
+            width: 100%;
+            padding: 13px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.42);
+            border-radius: 10px;
+            background: #fff;
+            color: #2c2b28;
+            font: inherit;
+        }
+        .preview-gate-card button {
+            width: 100%;
+            margin-top: 12px;
+        }
+        .preview-gate-error {
+            min-height: 1.4em;
+            margin: 10px 0 0;
+            color: #ffe1d7 !important;
+            font-size: 0.9rem;
+        }
+        body.preview-unlocked #previewGate {
+            display: none;
+        }
+
     </style>
 
     <!-- ===== STRUCTURED DATA (JSON-LD) ===== -->
@@ -1017,6 +1070,20 @@
     
 </head>
 <body>
+    <div id="previewGate" role="dialog" aria-modal="true" aria-labelledby="previewGateTitle">
+        <div class="preview-gate-card">
+            <p class="section-tag" style="color:#b8d0b8;">Private preview</p>
+            <h1 id="previewGateTitle">Boat Lane Paddock</h1>
+            <p>This website is currently being reviewed. Please enter the access code to continue.</p>
+            <form id="previewGateForm">
+                <label for="previewGatePassword" style="display:block; text-align:left; margin-bottom:6px;">Access code</label>
+                <input id="previewGatePassword" type="password" autocomplete="current-password" required />
+                <button class="btn btn-primary" type="submit">View preview</button>
+                <p id="previewGateError" class="preview-gate-error" role="alert"></p>
+            </form>
+        </div>
+    </div>
+
 
 <!-- ===== HEADER ===== -->
     <header>
@@ -1563,6 +1630,34 @@
 
     <!-- ===== JAVASCRIPT ===== -->
     <script>
+
+        // ===== PRIVATE PREVIEW GATE =====
+        (function () {
+            const previewCode = 'boat-lane-preview';
+            const gate = document.getElementById('previewGate');
+            const form = document.getElementById('previewGateForm');
+            const passwordInput = document.getElementById('previewGatePassword');
+            const error = document.getElementById('previewGateError');
+
+            if (sessionStorage.getItem('boatLanePreviewAccess') === 'granted') {
+                document.body.classList.add('preview-unlocked');
+            } else {
+                passwordInput.focus();
+            }
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                if (passwordInput.value === previewCode) {
+                    sessionStorage.setItem('boatLanePreviewAccess', 'granted');
+                    document.body.classList.add('preview-unlocked');
+                    error.textContent = '';
+                } else {
+                    error.textContent = 'That access code is not recognised.';
+                    passwordInput.select();
+                }
+            });
+        })();
+
         // Keep anchor targets clear of the sticky header at every responsive height.
         const stickyHeader = document.querySelector('header');
         const firstAnchoredSection = document.querySelector('section[id]');
